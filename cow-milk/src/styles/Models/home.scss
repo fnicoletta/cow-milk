@@ -1,0 +1,21 @@
+.home {
+    
+}
+
+h2 {
+    margin: 45px 0;
+}
+.home__featured-products {
+    @include flex-row('center-h');
+    flex-wrap: wrap;
+}
+
+.home__featured-products-item {
+    max-width: 17%;
+    margin: 0 8px;
+    img {
+        max-width: 100%;
+        border: 3px solid $red;
+        border-radius: 50%;
+    }
+}

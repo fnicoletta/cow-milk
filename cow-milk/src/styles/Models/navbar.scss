@@ -1,0 +1,68 @@
+.navbar {
+  background-image: url("http://eskipaper.com/images/cow-background-1.jpg");
+  height: 70vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.navbar__container {
+  width: 100%;
+  position: fixed;
+  @include flex-row("center-h");
+}
+
+a {
+  color: white;
+  padding: 4px;
+  transition: $default-timing;
+}
+
+.navbar--theme {
+  background-color: rgba(0, 0, 0, 0.788);
+  animation-name: fade-nav-in;
+  animation-duration: 0.4s;
+  transition: 0.4s;
+  @keyframes fade-nav-in {
+    from {
+      background-color: rgba(0, 0, 0, 0);
+    }
+    to {
+      background-color: rgba(0, 0, 0, 0.788);
+    }
+  }
+
+  a {
+    &:hover {
+      color: tan;
+    }
+  }
+
+  .router-link-exact-active {
+    font-weight: bold;
+    color: tan;
+  }
+}
+
+.navbar--transparent {
+  $link-active: #12da12;
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 10px;
+  transition: 0.4s;
+  a {
+    &:hover {
+      color: $link-active;
+    }
+  }
+  .router-link-exact-active {
+    font-weight: bold;
+    color: $link-active;
+  }
+}
+
+.navbar__container-items {
+  @include flexbox();
+  @include justify-content(space-between);
+  @include flex-basis(15%);
+  @include align-items(flex-end);
+  list-style: none;
+}

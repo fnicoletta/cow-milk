@@ -1,9 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Home from './pages/Home.vue';
 import Products from './pages/Products'
 Vue.use(VueRouter);
 const routes = [
-  { path: "/", component: Products },
+  { path: "/", component: Home },
   { path: "/products", component: Products },
   { path: "/bar", component: Products }
 ];
