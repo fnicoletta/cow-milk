@@ -6,7 +6,10 @@
 
 <script>
 export default {
-
+mounted () {
+  this.$store.dispatch('products/getAllProducts')
+  console.log(this.$store)
+}
 }
 </script>
 
