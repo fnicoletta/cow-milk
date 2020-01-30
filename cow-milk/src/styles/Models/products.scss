@@ -1,0 +1,29 @@
+$pagination-active-color: red;
+.products {
+  .pagination {
+    @include flex-row("center-h");
+    li {
+      margin: 0 2px;
+      list-style: none;
+      border: 1px solid black;
+      padding: 2px;
+    }
+    .page-item {
+      &:hover {
+        a {
+          color: $pagination-active-color;
+        }
+      }
+    }
+    .active {
+      pointer-events: none;
+      a {
+        color: $pagination-active-color;
+      }
+      .sr-only {
+        display: none;
+      }
+    }
+  }
+}
+@import 'productslist';
