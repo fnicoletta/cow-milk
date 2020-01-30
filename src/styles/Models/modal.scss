@@ -1,0 +1,80 @@
+.modal {
+   display: block;
+   background-color: $brown;
+   color: $white;
+   width: 600px;
+   max-width: 100%;
+   height: 400px;
+   max-height: 100%;
+   text-align: center;
+   border: 3px $cream solid;
+   border-radius: 10px;
+   box-shadow: 5px 5px 10px grey;
+   animation: modal-grow 0.8s;
+
+   &-overlay {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10000;
+   }
+
+   &__header {
+      padding: 15px;
+      font-size: 15px;
+   }
+
+   &__form {
+      font-size: 20px;
+   }
+
+   &__content {
+      padding: 20px 20px 20px 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+   }
+}
+
+.close {
+   font-size: 20px;
+   padding: 0 5px;
+   float: right;
+   font-weight: bold;
+   margin: 10px 10px 0 0;
+   transition: 0.3s;
+   border: solid white 1px;
+   cursor: pointer;
+   position: relative;
+   z-index: 10001;
+
+   &:hover {
+      border-radius: 50%;
+   }
+}
+
+.is-closed {
+   display: none;
+}
+
+ul {
+   text-align: left;
+   margin-left: 10vw;
+}
+
+
+@keyframes modal-grow {
+   from {
+      opacity: 0%;
+      left: 30%;
+   }
+
+   to {
+      opacity: 100%;
+      left: 50%;
+   }
+}
