@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<Navbar />
-		<Modal />
+		<Modal v-if="showModal" :closeModal="closeModal" />
 		<router-view> </router-view>
 		<Footer />
 	</div>
@@ -17,6 +17,16 @@ export default {
 		Navbar,
 		Footer,
 		Modal,
+	},
+	data() {
+		return {
+			showModal: true,
+		}
+	},
+	methods: {
+		closeModal() {
+			this.showModal = false
+		},
 	},
 }
 </script>

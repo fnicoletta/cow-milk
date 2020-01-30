@@ -1,6 +1,6 @@
 <template>
-	<div class="modal modal-overlay" :class="{ 'is-closed': isClosed }">
-		<span @click="isClosed = true" class="close">&times;</span>
+	<div class="modal modal-overlay">
+		<span @click="closeModal" class="close">&times;</span>
 		<div class="modal__content">
 			<div class="modal__header">
 				<h1>Join the CowMilk Family™ to recieve exclusive offers!</h1>
@@ -24,9 +24,13 @@
 <script>
 export default {
 	data() {
-		return {
-			isClosed: false,
-		}
+		return {}
+	},
+	props: {
+		closeModal: {
+			type: Function,
+			default: () => {},
+		},
 	},
 }
 </script>
