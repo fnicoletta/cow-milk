@@ -8,6 +8,8 @@ import { edgewood } from './apis/axios'
 Vue.prototype.$axios = axios;
 Vue.prototype.$edgewood = edgewood;
 Vue.config.productionTip = false
+Vue.component("pagination", require("laravel-vue-pagination"));
+
 
 new Vue({
   axios,
