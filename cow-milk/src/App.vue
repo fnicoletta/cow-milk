@@ -21,10 +21,15 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #333333;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #333333;
+  }
+  .main-wrapper {
+    margin: 2em auto;
+    padding: 0 2em;
+    max-width: 1170px;
+  }
 </style>

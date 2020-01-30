@@ -1,5 +1,5 @@
 <template>
-  <div class="home container">
+  <div class="home container main-wrapper">
     <h2 class="text-center">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto minus
       velit animi, quo vel, voluptatum quis dolore in eum unde soluta sed
