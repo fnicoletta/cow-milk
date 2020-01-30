@@ -1,42 +1,47 @@
 <template>
   <div class="products container main-wrapper">
     <Loading v-if="loading" />
-    <ProductsList :products="products.data" />
-    <pagination :data="products" @pagination-change-page="getResults"></pagination>
+    <ProductsList v-if="products" :products="products" />
+    <pagination
+      v-if="products"
+      :data="products"
+      @pagination-change-page="getResults"
+    ></pagination>
   </div>
 </template>
 
 <script>
-import ProductsList from '../components/Products/ProductsList';
-import Loading from '../components/Misc/Loading';
+import ProductsList from "../components/Products/ProductsList";
+import Loading from "../components/Misc/Loading";
 export default {
   components: {
     ProductsList,
-    Loading,
+    Loading
   },
   data() {
     return {
-      products: {},
       loading: false
     };
   },
   methods: {
-    setProducts () {
-      this.products = this.$store.state.products.all
+    getProducts() {
+      this.$store.dispatch("products/getAllProducts");
     },
     getResults(page = 1) {
-      this.loading = true
-			this.$edgewood.get('/products?page=' + page)
-				.then(response => {
-          console.log(response)
-          this.products = response.data;
-          this.loading = false
-				});
-		}
+      this.loading = true;
+      this.$edgewood.get("/products?page=" + page).then(response => {
+        this.$store.commit("products/setProducts", response.data);
+        this.loading = false;
+      });
+    }
+  },
+  computed: {
+    products() {
+      return this.$store.state.products.all;
+    }
   },
   mounted() {
-    this.$store.dispatch("products/getAllProducts");
-    this.setProducts()
+    this.getProducts();
   }
 };
 </script>

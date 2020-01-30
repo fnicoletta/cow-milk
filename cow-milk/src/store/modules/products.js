@@ -1,7 +1,7 @@
 import { edgewood } from "../../apis/axios";
 // initial state
 const state = {
-  all: ["test"]
+  all: null
 };
 
 // getters
@@ -15,9 +15,13 @@ const getters = {
 const actions = {
   async getAllProducts({ commit }) {
     await edgewood.get("/products").then(({ data }) => {
-        console.log(data)
+        console.log('data', data)
       commit("setProducts", data);
     });
+  },
+  getPaginatedProducts({commit}, page = 1) {
+    alert('happened')
+    console.log('page', page)
   }
 };
 

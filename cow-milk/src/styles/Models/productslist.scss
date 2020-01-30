@@ -1,0 +1,9 @@
+.products-list__items {
+    @include flexbox();
+    @include justify-content(space-between);
+    flex-wrap: wrap;
+}
+.products-list__item {
+    flex-basis: 45%;
+    margin: 5px;
+}

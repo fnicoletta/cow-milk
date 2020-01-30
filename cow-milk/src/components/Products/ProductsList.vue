@@ -2,7 +2,7 @@
   <div class="products-list">
     <div class="products-list__items">
       <div
-        v-for="product in products"
+        v-for="product in products.data"
         :key="product.id"
         class="products-list__item"
       >
@@ -16,7 +16,7 @@
 export default {
   props: {
     products: {
-      type: Array,
+      type: Object,
       default: () => {}
     }
   }
