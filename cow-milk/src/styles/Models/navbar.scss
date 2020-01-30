@@ -12,7 +12,7 @@
 }
 
 a {
-  color: white;
+  color: $black;
   padding: 4px;
   transition: $default-timing;
 }
@@ -32,30 +32,30 @@ a {
   }
 
   a {
+    color: $white;
     &:hover {
-      color: tan;
+      color: $white;
     }
   }
 
   .router-link-exact-active {
     font-weight: bold;
-    color: tan;
+    color: $white;
   }
 }
 
 .navbar--transparent {
-  $link-active: #12da12;
-  background-color: rgba(0, 0, 0, 0);
   padding-top: 10px;
+  padding-bottom: 10px;
   transition: 0.4s;
   a {
     &:hover {
-      color: $link-active;
+      color: $black;
     }
   }
   .router-link-exact-active {
     font-weight: bold;
-    color: $link-active;
+    color: $black;
   }
 }
 
