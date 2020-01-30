@@ -16,6 +16,7 @@ $pagination-active-color: red;
       }
     }
     .active {
+      pointer-events: none;
       a {
         color: $pagination-active-color;
       }

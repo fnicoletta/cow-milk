@@ -6,14 +6,18 @@
         :key="product.id"
         class="products-list__item"
       >
-        {{ product.name }}
+        <Card :image="product.image" :footer="product.name" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Card from '../Common/Card'
 export default {
+    components: {
+        Card
+    },
   props: {
     products: {
       type: Object,

@@ -1,9 +1,15 @@
 .products-list__items {
-    @include flexbox();
+  @include flexbox();
+  @include justify-content(center);
+  flex-wrap: wrap;
+  @include large("up") {
     @include justify-content(space-between);
-    flex-wrap: wrap;
+  }
 }
 .products-list__item {
-    flex-basis: 45%;
-    margin: 5px;
+  flex-basis: 45%;
+  margin: 5px;
+  @include large("up") {
+    flex-basis: 23%;
+  }
 }
