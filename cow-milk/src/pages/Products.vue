@@ -1,17 +1,23 @@
 <template>
   <div class="products container main-wrapper">
-    <div v-for="product in products.data" :key="product.id">
-      <h1>{{ product.name }}</h1>
-    </div>
+    <Loading v-if="loading" />
+    <ProductsList :products="products.data" />
     <pagination :data="products" @pagination-change-page="getResults"></pagination>
   </div>
 </template>
 
 <script>
+import ProductsList from '../components/Products/ProductsList';
+import Loading from '../components/Misc/Loading';
 export default {
+  components: {
+    ProductsList,
+    Loading,
+  },
   data() {
     return {
-      products: {}
+      products: {},
+      loading: false
     };
   },
   methods: {
@@ -19,10 +25,12 @@ export default {
       this.products = this.$store.state.products.all
     },
     getResults(page = 1) {
+      this.loading = true
 			this.$edgewood.get('/products?page=' + page)
 				.then(response => {
           console.log(response)
-					this.products = response.data;
+          this.products = response.data;
+          this.loading = false
 				});
 		}
   },
