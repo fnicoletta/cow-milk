@@ -7,8 +7,11 @@
 }
 .navbar__container {
   width: 100%;
-  position: fixed;
   @include flex-row("center-h");
+}
+
+.navbar--fixed {
+  position: fixed;
 }
 
 a {
@@ -24,9 +27,11 @@ a {
   transition: 0.4s;
   @keyframes fade-nav-in {
     from {
+      transform: translateY(-200px);
       background-color: rgba(0, 0, 0, 0);
     }
     to {
+      transform: translateY(0px);
       background-color: rgba(0, 0, 0, 0.788);
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <div class="navbar__container" :class="scrolledBy ? 'navbar--theme' : 'navbar--transparent'">
+    <div class="navbar__container" :class="scrolledBy ? 'navbar--theme navbar--fixed' : 'navbar--transparent'">
       <ul class="navbar__container-items">
         <router-link to="/">
           <li>Home</li>
