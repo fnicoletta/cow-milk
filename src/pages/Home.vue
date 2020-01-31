@@ -1,47 +1,48 @@
 <template>
-  <div class="home container main-wrapper">
-    <h2 class="text-center">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto minus
-      velit animi, quo vel, voluptatum quis dolore in eum unde soluta sed
-      similique voluptas tempore voluptates accusamus magni fugiat ab vero non
-      expedita. Voluptates vel iusto mollitia ullam id temporibus blanditiis
-      modi fuga, doloremque itaque voluptate incidunt quasi facilis omnis
-      dolorem quos nostrum, hic dolor ea quia similique fugiat eos.
-    </h2>
+  <Layout>
+    <div class="home container main-wrapper">
+      <h2 class="text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+        minus velit animi, quo vel, voluptatum quis dolore in eum unde soluta
+        sed similique voluptas tempore voluptates accusamus magni fugiat ab vero
+        non expedita. Voluptates vel iusto mollitia ullam id temporibus
+        blanditiis modi fuga, doloremque itaque voluptate incidunt quasi facilis
+        omnis dolorem quos nostrum, hic dolor ea quia similique fugiat eos.
+      </h2>
 
-    <div v-if="featuredProducts" class="home__featured-products text-center">
-      <div
-        :key="index"
-        v-for="(product, index) in featuredProducts.data.slice(0, 3)"
-        class="home__featured-products-item"
-      >
-        <img :src="product.image" :alt="product.name" />
-        <span class="text-gray">{{ product.name }}</span>
+      <div v-if="featuredProducts" class="home__featured-products text-center">
+        <div
+          :key="index"
+          v-for="(product, index) in featuredProducts.data.slice(0, 3)"
+          class="home__featured-products-item"
+        >
+          <img :src="product.image" :alt="product.name" />
+          <span class="text-gray">{{ product.name }}</span>
+        </div>
       </div>
     </div>
-  </div>
+  </Layout>
 </template>
 
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
-   methods: {
+  methods: {
     getProducts() {
       if (!this.featuredProducts) {
         this.$store.dispatch("products/getAllProducts");
       }
-    },
-   },
+    }
+  },
   computed: {
     featuredProducts() {
       return this.$store.state.products.all;
     }
   },
   mounted() {
-    this.getProducts()
+    this.getProducts();
   }
 };
 </script>

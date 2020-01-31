@@ -1,13 +1,15 @@
 <template>
-  <div class="products container main-wrapper">
-    <Loading v-if="loading" />
-    <ProductsList v-if="products" :products="products" />
-    <pagination
-      v-if="products"
-      :data="products"
-      @pagination-change-page="getResults"
-    ></pagination>
-  </div>
+  <Layout>
+    <div class="products container main-wrapper">
+      <Loading v-if="loading" />
+      <ProductsList v-if="products" :products="products" />
+      <pagination
+        v-if="products"
+        :data="products"
+        @pagination-change-page="getResults"
+      ></pagination>
+    </div>
+  </Layout>
 </template>
 
 <script>
