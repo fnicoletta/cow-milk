@@ -6,7 +6,7 @@
 				<h1>Join the CowMilk Family™ to recieve exclusive offers!</h1>
 				<hr />
 				<h3>Enter your email below to gain access to:</h3>
-				<ul>
+				<ul class="modal__list">
 					<li>Tons of coupons</li>
 					<li>Member exclusive sales</li>
 					<li>Early access to new products</li>
