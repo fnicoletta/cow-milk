@@ -15,6 +15,9 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   base: __dirname,
+  scrollBehavior (to, from, savedPosition) {
+  return { x: 0, y: 0 }
+},
   routes // short for `routes: routes`
 });
 
