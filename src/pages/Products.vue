@@ -25,7 +25,9 @@ export default {
   },
   methods: {
     getProducts() {
-      this.$store.dispatch("products/getAllProducts");
+      if (!this.products) {
+        this.$store.dispatch("products/getAllProducts");
+      }
     },
     getResults(page = 1) {
       this.loading = true;

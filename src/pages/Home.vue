@@ -10,30 +10,40 @@
     </h2>
 
     <div v-if="featuredProducts" class="home__featured-products text-center">
-        <div :key="index" v-for="(product, index) in featuredProducts" class="home__featured-products-item">
-            <img :src="product.image" :alt="product.name">
-            <span class="text-gray">{{ product.name }}</span>
-        </div>
+      <div
+        :key="index"
+        v-for="(product, index) in featuredProducts.data.slice(0, 3)"
+        class="home__featured-products-item"
+      >
+        <img :src="product.image" :alt="product.name" />
+        <span class="text-gray">{{ product.name }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-    data () {
-        return {
-            featuredProducts: []
-        }
+  data() {
+    return {
+    };
+  },
+   methods: {
+    getProducts() {
+      if (!this.featuredProducts) {
+        this.$store.dispatch("products/getAllProducts");
+      }
     },
-    mounted () {
-       const res = this.$edgewood.get('/products').then(({data}) => {
-           this.featuredProducts = data.data
-       console.log(this.featuredProducts)
-       })
+   },
+  computed: {
+    featuredProducts() {
+      return this.$store.state.products.all;
     }
+  },
+  mounted() {
+    this.getProducts()
+  }
 };
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
