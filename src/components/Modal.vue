@@ -14,8 +14,8 @@
 				</ul>
 			</div>
 			<form class="modal__form">
-				<input placeholder="youremail@website.com" type="email" />
-				<button>Join Now!</button>
+				<input class="default-input" placeholder="youremail@website.com" type="email" />
+				<button class="button button--squared">Join Now!</button>
 			</form>
 		</div>
 	</div>

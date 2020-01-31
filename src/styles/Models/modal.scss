@@ -9,8 +9,16 @@
 	text-align: center;
 	border: 3px $cream solid;
 	border-radius: 10px;
-	box-shadow: 5px 5px 10px rgb(48, 48, 48);
+	box-shadow: 5px 5px 10px rgb(61, 61, 61);
 	animation: modal-grow 0.8s;
+
+	.button {
+		color: white;
+	}
+
+	.default-input {
+		display: inline;
+	}
 
 
 	@include small ('down') {
