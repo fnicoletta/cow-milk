@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="products container main-wrapper">
-      <Loading v-if="loading" />
+      <Loading v-if="loading || !products" />
       <ProductsList v-if="products" :products="products" />
       <pagination
         v-if="products"

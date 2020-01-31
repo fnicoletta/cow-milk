@@ -8,8 +8,15 @@
 }
 .products-list__item {
   flex-basis: 45%;
+  animation-name: test;
+  animation-duration: .5s;
   margin: 5px;
   @include large("up") {
     flex-basis: 23%;
   }
+}
+
+@keyframes test {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
