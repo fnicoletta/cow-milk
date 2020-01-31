@@ -15,7 +15,7 @@ const getters = {
 const actions = {
   async getAllProducts({ commit }) {
     await edgewood.get("/products").then(({ data }) => {
-        console.log('data', data)
+        // console.log('data', data)
       commit("setProducts", data);
     });
   },
