@@ -1,12 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from './pages/Home.vue';
-import Products from './pages/Products'
+import Home from "./pages/Home.vue";
+import Products from "./pages/Products";
+import NotFound from './pages/NotFound.vue';
 Vue.use(VueRouter);
 const routes = [
   { path: "/", component: Home },
   { path: "/products", component: Products },
-  { path: "/bar", component: Products }
+  { path: "/bar", component: Products },
+  {
+    path: "/*",
+    component: NotFound
+  }
 ];
 
 // 3. Create the router instance and pass the `routes` option
@@ -15,10 +20,10 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   base: __dirname,
-  scrollBehavior (to, from, savedPosition) {
-  return { x: 0, y: 0 }
-},
+  scrollBehavior(to, from, savedPosition) {
+    return { x: 0, y: 0 };
+  },
   routes // short for `routes: routes`
 });
 
-export default router
+export default router;
