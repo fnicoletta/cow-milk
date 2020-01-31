@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     scrolledBy() {
-      if (this.scrollPosition > 250) {
+      if (this.scrollPosition > 80) {
         return true;
       }
       return false;
