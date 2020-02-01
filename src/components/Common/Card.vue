@@ -4,7 +4,7 @@
 			<ProductModal :close="toggleModal" />
 		</div>
 		<div @click="toggleModal()" class="card-cta">
-			Expand
+			See Product
 		</div>
 		<div v-if="premade" class="card-content">
 			<div class="card-image">
