@@ -49,7 +49,6 @@ export default {
 			default: true,
 		},
 	},
-	computed: {},
 	mixins: [SetCurrencyType],
 }
 </script>

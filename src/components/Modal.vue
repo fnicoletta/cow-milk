@@ -27,9 +27,6 @@
 
 <script>
 export default {
-	data() {
-		return {}
-	},
 	props: {
 		closeModal: {
 			type: Function,
