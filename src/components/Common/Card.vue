@@ -12,7 +12,7 @@
 			</div>
 			<div class="card-footer">
 				{{ footer }} <br />
-				{{ priceOfProducts }}
+				{{ setCurrencyType('en', 'USD') }}
 			</div>
 		</div>
 	</div>
@@ -20,6 +20,7 @@
 
 <script>
 import ProductModal from '@/components/Products/ProductModal'
+import SetCurrencyType from '@/mixins/currencyMixin'
 export default {
 	components: {
 		ProductModal,
@@ -48,16 +49,8 @@ export default {
 			default: true,
 		},
 	},
-	computed: {
-		priceOfProducts() {
-			const number = Math.random() * (20 - 7) + 7
-
-			return new Intl.NumberFormat('en-IN', {
-				style: 'currency',
-				currency: 'USD',
-			}).format(number)
-		},
-	},
+	computed: {},
+	mixins: [SetCurrencyType],
 }
 </script>
 
