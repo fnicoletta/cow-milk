@@ -41,13 +41,8 @@ export default {
       }
    },
    methods: {
-      setCurrencyType(countryCode, currencyType, country) {
-         const price = Math.random() * (20 - 7) + 7
-
-         return new Intl.NumberFormat(countryCode, {
-            style: 'currency',
-            currency: currencyType,
-         }).format((1 / this.exchangeRates[country].rate) * price)
-      },
-   },
+      currencyConverter(country) {
+         return (exchangeRates.us.rate / exchangeRates.country.rate).toFixed(2)
+      }
+   }
 }
