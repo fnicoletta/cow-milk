@@ -3,7 +3,7 @@
   @include justify-content(center);
   flex-wrap: wrap;
   @include large("up") {
-    @include justify-content(space-between);
+    @include justify-content(center);
   }
 }
 .products-list__item {
@@ -12,7 +12,7 @@
   margin: 5px;
   flex-basis: 100%;
   @include medium("up") {
-    flex-basis: 45%;
+    flex-basis: 48%;
   }
   @include large("up") {
     flex-basis: 23%;

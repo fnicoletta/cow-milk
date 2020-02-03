@@ -4,7 +4,7 @@
       <h1>My events</h1>
       <div v-for="eventObj in events" :key="eventObj.uid">
         <div :key="i" v-for="(event, i) in eventObj.data">
-          {{ event }}
+          <!-- {{ event }} -->
           <h2 :key="j" v-for="(title, j) in event.title.value">
             {{ title.text }}
           </h2>
