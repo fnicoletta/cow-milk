@@ -1,5 +1,8 @@
 <template>
   <div class="login">
+    <h3 v-if="error">
+      {{ error }}
+    </h3>
     <form @submit.prevent="login" class="login__container">
       <div class="login__input">
         <label for="email">Email</label>
@@ -31,11 +34,13 @@
 </template>
 
 <script>
+import cookiesMixin from '../mixins/cookiesMixin';
 export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      error: ""
     };
   },
   methods: {
@@ -44,12 +49,24 @@ export default {
         email: this.email,
         password: this.password,
         api_token: 12345
-      }).then(res => {
-        console.log(res)
+      }).then(({data}) => {
+        this.setCookie('jwt-token', data.token, 1)
+        this.$router.push('/');
       })
       .catch(err => {
-        console.log(err)
+        if (err.response) {
+          this.error = err.response.data
+        } else {
+          console.log(err)
+          alert('Something went wrong...')
+        }
       })
+    }
+  },
+  mixins: [cookiesMixin],
+  mounted () {
+    if (this.checkCookie('jwt-token')) {
+      console.log(this.getCookie('jwt-token'))
     }
   }
 };
