@@ -16,7 +16,7 @@
         <router-link to="/events">
           <li>Events</li>
         </router-link>
-        <a @click.stop="logout" class="navbar__cta-link">
+        <a v-if="$store.state.auth.user" @click.stop="logout" class="navbar__cta-link">
           <li>Logout</li>
         </a>
       </ul>
@@ -54,6 +54,7 @@ export default {
         .post("signout", dataToPass, headers)
         .then(({ data }) => {
           this.loading = false
+          this.$store.commit('auth/setUser', null)
           this.$router.push('/login')
         })
         .catch(err => {

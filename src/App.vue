@@ -8,11 +8,13 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 import Modal from '@/components/Modal'
+import cookieMixin from '@/mixins/cookiesMixin'
 export default {
 	name: 'app',
+	mixins: [cookieMixin],
 	components: {
 		Navbar,
 		Footer,
@@ -28,6 +30,11 @@ export default {
 			this.showModal = false
 		},
 	},
+	mounted () {
+	 if (this.getCookie('jwt-token')) {
+		 this.$store.dispatch('auth/getUser', this.getCookie('jwt-token'))
+	 }
+	}
 }
 </script>
 

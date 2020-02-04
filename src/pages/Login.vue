@@ -1,7 +1,8 @@
 <template>
-  <div class="login">
+  <AuthBase>
+    <div class="login">
     <h3 v-if="error">
-      {{ error }}
+      {{ error.error }}
     </h3>
     <form @submit.prevent="login" class="login__container">
       <div class="login__input">
@@ -30,12 +31,17 @@
         </button>
       </div>
     </form>
-  </div>
+    </div>
+  </AuthBase>
 </template>
 
 <script>
 import cookiesMixin from '../mixins/cookiesMixin';
+import AuthBase from '@/components/Auth/AuthBase'
 export default {
+  components: {
+    AuthBase
+  },
   data() {
     return {
       email: "",
@@ -51,6 +57,7 @@ export default {
         api_token: 12345
       }).then(({data}) => {
         this.setCookie('jwt-token', data.token, 1)
+        this.$store.commit('auth/setUser', data.user)
         this.$router.push('/');
       })
       .catch(err => {
@@ -74,11 +81,7 @@ export default {
 
 <style lang="scss" scoped>
 .login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: $cream;
+  
   .login__submit {
     // text-align: center;
     button {

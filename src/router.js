@@ -4,6 +4,7 @@ import Home from "./pages/Home.vue";
 import Events from "./pages/Events.vue";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
+import Register from './pages/Register';
 import NotFound from './pages/NotFound.vue';
 import { cookieFunctions } from '@/mixins/cookiesMixin';
 Vue.use(VueRouter);
@@ -12,6 +13,7 @@ const routes = [
   { path: "/products", component: Products },
   { path: "/events", component: Events },
   { path: "/login", component: Login, meta : { guest: true } },
+  { path: "/register", component: Register, meta : { guest: true } },
   {
     path: "/*",
     component: NotFound
