@@ -5,10 +5,12 @@ import axios from 'axios';
 import store from './store/';
 import { edgewood } from './apis/axios'
 import Layout from '@/components/Layout'
+import Spinner from '@/components/Misc/Spinner'
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$edgewood = edgewood;
 Vue.config.productionTip = false
+Vue.component("Spinner", Spinner);
 Vue.component("Layout", Layout);
 Vue.component("pagination", require("laravel-vue-pagination"));
 

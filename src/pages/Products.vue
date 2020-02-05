@@ -1,13 +1,17 @@
 <template>
   <Layout>
     <div class="products main-wrapper">
-      <Loading v-if="loading || !products" />
-      <ProductsList v-if="products" :products="products" />
-      <pagination
-        v-if="products"
-        :data="products"
-        @pagination-change-page="getResults"
-      ></pagination>
+      <template v-if="products && !loading">
+        <ProductsList :products="products" />
+        <pagination
+          :data="products"
+          @pagination-change-page="getResults"
+        ></pagination>
+      </template>
+      <div v-if="loading" class="skeleton">
+
+      </div>
+      <Loading v-if="loading" />
     </div>
   </Layout>
 </template>
@@ -50,4 +54,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.skeleton {
+  background-color: rgb(219, 219, 219);
+  height: 600px;
+
+}
+</style>
