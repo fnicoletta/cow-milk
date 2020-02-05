@@ -1,0 +1,18 @@
+.auth-modal {
+  background-color: white;
+  min-height: 400px;
+  width: 50%;
+  border-radius: 3px;
+  border: 2px solid black;
+}
+
+.auth-close {
+  float: right;
+  padding: 10px 15px;
+  span {
+    cursor: pointer;
+    &:hover {
+      color: red;
+    }
+  }
+}

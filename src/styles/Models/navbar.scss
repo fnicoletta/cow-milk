@@ -4,10 +4,10 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
 }
 .navbar__container {
   width: 100%;
-  @include flex-row("center-h");
 }
 
 .navbar--fixed {
@@ -40,14 +40,32 @@ a {
   a {
     color: $white;
     &:hover {
-      color: $white;
+      color: darken($white, 22%);
     }
   }
 
   .router-link-exact-active {
     font-weight: bold;
     color: $white;
+    &:hover {
+      color: $white;
+    }
   }
+
+  .navbar__ctas {
+  span {
+    &:hover {
+      color: darken($white, 22%);
+    }
+  }
+  a {
+    color: $white;
+    cursor: text;
+    &:hover {
+      color: $white;
+    }
+  }
+}
 }
 
 .navbar--transparent {
@@ -56,19 +74,53 @@ a {
   transition: 0.4s;
   a {
     &:hover {
-      color: $black;
+      color: lighten($black, 22%);
     }
   }
   .router-link-exact-active {
     font-weight: bold;
     color: $black;
+    &:hover {
+      color: $black;
+    }
   }
 }
 
 .navbar__container-items {
-  @include flexbox();
-  @include justify-content(space-between);
-  @include flex-basis(15%);
-  @include align-items(flex-end);
+  display: grid;
+  grid-template-columns: 44% 48% 7%;
   list-style: none;
+}
+
+.navbar__links {
+  display: flex;
+}
+
+.navbar__ctas {
+  display: flex;
+  @include large("up") {
+
+    white-space: nowrap;
+  }
+  span {
+    cursor: pointer;
+    &:hover {
+      color: lighten($black, 22%);
+    }
+  }
+  a {
+    cursor: text;
+    &:hover {
+      color: $black;
+    }
+  }
+}
+
+.navbar__logo {
+  position: relative;
+  img {
+    // position: absolute;
+    width: 20px;
+    // top: -15%;
+  }
 }
