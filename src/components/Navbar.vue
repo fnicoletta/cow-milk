@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import cookieMixin from "@/mixins/cookiesMixin";
+import cookieMixin from '@/mixins/cookiesMixin'
 export default {
   mixins: [cookieMixin],
   data() {
@@ -80,6 +80,6 @@ export default {
 
 <style lang="scss">
 .navbar__cta-link {
-  cursor: pointer;
+	cursor: pointer;
 }
 </style>
