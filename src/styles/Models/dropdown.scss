@@ -1,0 +1,27 @@
+.dropdown-container {
+   border: 5px solid $cream;
+   border-radius: 10px;
+   background-color: $cream;
+   margin: 1vw;
+}
+
+.dropdown-btn {
+   cursor: pointer;
+   width: max-content;
+   height: max-content;
+}
+
+.dropdown-items {
+   display: inline-flex;
+   border: 2px transparent solid;
+   width: max-content;
+
+   &:hover {
+      border-bottom: 2px $brown solid;
+   }
+}
+
+.dropdown-content {
+   display: inline-flex;
+   justify-content: space-evenly;
+}
