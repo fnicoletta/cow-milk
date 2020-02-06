@@ -64,9 +64,7 @@ export default {
 		},
 	},
 	mixins: [SetCurrencyType],
-	computed: {
-		...mapGetters(['CODE', 'COUNTRY', 'CURRENCY']),
-	},
+	computed: mapGetters(['CODE', 'COUNTRY', 'CURRENCY']),
 }
 </script>
 
@@ -88,6 +86,9 @@ export default {
 	img {
 		width: 100%;
 		height: 225px;
+		@include medium('down') {
+			height: 325px;
+		}
 	}
 }
 .card-see {
