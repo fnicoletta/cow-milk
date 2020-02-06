@@ -28,6 +28,10 @@
           </router-link>
         </div>
         <div v-if="$store.state.auth.resolved" class="navbar__ctas">
+          <NavbarPanel :close="toggleOptions" v-if="options" />
+          <!-- <div style="background-color: white; position: absolute; top: 100%; border-radius: 3px;" class="d">
+            
+          </div> -->
           <a v-if="$store.state.auth.user" class="navbar__cta-link--options">
             <img
             @click="toggleOptions"
@@ -41,7 +45,6 @@
               <span @click="toggleRegister">Register</span>
             </li>
           </a>
-          <NavbarPanel :close="toggleOptions" v-if="options" />
         </div>
         <Spinner v-else />
       </ul>
