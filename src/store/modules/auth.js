@@ -1,7 +1,8 @@
 import { edgewood } from "../../apis/axios";
 // initial state
 const state = {
-  user: null
+  user: null,
+  resolved: false
 };
 
 // getters
@@ -23,6 +24,7 @@ const actions = {
     await edgewood.post("/users/getAuthedUser", {}, headers)
     .then(({ data }) => {
       commit("setUser", data.user);
+      commit("setResolved", true)
     })
     .catch(err => {
         console.log(err)
@@ -39,6 +41,9 @@ const actions = {
 const mutations = {
   setUser(state, user) {
     state.user = user;
+  },
+  setResolved(state, bool) {
+    state.resolved = bool
   }
 };
 

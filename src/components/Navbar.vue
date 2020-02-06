@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
-    <Login v-if="loggingIn" :closeModal="toggleLogin"/>
-    <Register v-if="registering" :closeModal="toggleRegister"/>
+    <Login v-if="loggingIn" :closeModal="toggleLogin" />
+    <Register v-if="registering" :closeModal="toggleRegister" />
     <div
       class="navbar__container"
       :class="
@@ -11,7 +11,10 @@
       <ul class="navbar__container-items">
         <!-- todo -->
         <div class="navbar__logo">
-         <img src="https://dcassetcdn.com/design_img/3136635/606087/606087_17349263_3136635_50b8542e_thumbnail.png" alt="logo">
+          <img
+            src="https://dcassetcdn.com/design_img/3136635/606087/606087_17349263_3136635_50b8542e_thumbnail.png"
+            alt="logo"
+          />
         </div>
         <div class="navbar__links">
           <router-link to="/">
@@ -24,13 +27,17 @@
             <li>Events</li>
           </router-link>
         </div>
-        <div class="navbar__ctas">
-          <a
-            v-if="$store.state.auth.user"
-            @click.stop="logout"
-            class="navbar__cta-link"
-          >
-            <li><span>Logout</span></li>
+        <div v-if="$store.state.auth.resolved" class="navbar__ctas">
+          <NavbarPanel :close="toggleOptions" v-if="options" />
+          <!-- <div style="background-color: white; position: absolute; top: 100%; border-radius: 3px;" class="d">
+            
+          </div> -->
+          <a v-if="$store.state.auth.user" class="navbar__cta-link--options">
+            <img
+            @click="toggleOptions"
+              src="https://cdn1.iconfinder.com/data/icons/avatar-3/512/Manager-512.png"
+              alt="avatar"
+            />
           </a>
           <a v-if="!$store.state.auth.user" class="navbar__cta-link">
             <li>
@@ -39,6 +46,7 @@
             </li>
           </a>
         </div>
+        <Spinner v-else />
       </ul>
     </div>
   </div>
@@ -48,10 +56,12 @@
 import cookieMixin from "@/mixins/cookiesMixin";
 import Login from "@/components/Auth/Login";
 import Register from "@/components/Auth/Register";
+import NavbarPanel from "@/components/NavbarPanel";
 export default {
   components: {
     Login,
-    Register
+    Register,
+    NavbarPanel
   },
   mixins: [cookieMixin],
   data() {
@@ -59,44 +69,23 @@ export default {
       scrollPosition: 0,
       loading: false,
       registering: false,
-      loggingIn: false
+      loggingIn: false,
+      options: false
     };
   },
   methods: {
-    toggleLogin () {
-      this.loggingIn =  !this.loggingIn
+    toggleLogin() {
+      this.loggingIn = !this.loggingIn;
     },
-    toggleRegister () {
-      this.registering = !this.registering
+    toggleRegister() {
+      this.registering = !this.registering;
+    },
+    toggleOptions () {
+      this.options = !this.options
     },
     updateScroll() {
       this.scrollPosition = window.scrollY;
     },
-    logout() {
-      this.loading = true;
-      const currentToken = this.getCookie("jwt-token");
-      this.setCookie("jwt-token", "", 0);
-      const dataToPass = {
-        api_token: 12345
-      };
-      const headers = {
-        headers: {
-          Authorization: `Bearer ${currentToken}`
-        }
-      };
-      this.$edgewood
-        .post("signout", dataToPass, headers)
-        .then(({ data }) => {
-          this.loading = false;
-          this.$store.commit("auth/setUser", null);
-          this.$router.push("/login");
-        })
-        .catch(err => {
-          this.loading = false;
-          console.log(err);
-          alert("something went wrong...");
-        });
-    }
   },
   computed: {
     scrolledBy() {

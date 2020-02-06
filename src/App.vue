@@ -33,6 +33,8 @@ export default {
 	mounted () {
 	 if (this.getCookie('jwt-token')) {
 		 this.$store.dispatch('auth/getUser', this.getCookie('jwt-token'))
+	 } else {
+		 this.$store.commit('auth/setResolved', true)
 	 }
 	}
 }
