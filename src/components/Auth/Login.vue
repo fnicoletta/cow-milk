@@ -1,11 +1,11 @@
 <template>
-  <AuthModal :closeModal="closeModal">
+  <WhiteModal :closeModal="closeModal">
     Login
-  </AuthModal>
+  </WhiteModal>
 </template>
 
 <script>
-import AuthModal from "@/components/Auth/AuthModal";
+import WhiteModal from "@/components/Common/WhiteModal";
 export default {
   props: {
     closeModal: {
@@ -14,7 +14,7 @@ export default {
     }
   },
   components: {
-    AuthModal
+    WhiteModal
   }
 };
 </script>

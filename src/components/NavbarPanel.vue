@@ -27,10 +27,13 @@
 
 <script>
 import Panel from "@/components/Misc/Panel";
+import cookieMixin from "@/mixins/cookiesMixin";
+
 export default {
   components: {
     Panel
   },
+  mixins: [cookieMixin],
   props: {
     close: {
       type: Function,
