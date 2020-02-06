@@ -53,6 +53,9 @@ a {
   }
 
   .navbar__ctas {
+    @include medium("down") {
+      display: none;
+    }
   span {
     &:hover {
       color: darken($white, 22%);
@@ -88,19 +91,29 @@ a {
 
 .navbar__container-items {
   display: grid;
-  grid-template-columns: 44% 48% 7%;
+  grid-template-columns: 44% 45.1% 7%;
   list-style: none;
+  @include large("down") {
+    grid-template-columns: 42% 46.1% 7%;
+  }
+ 
 }
 
 .navbar__links {
   display: flex;
+  @include medium("down") {
+      display: none;
+    }
 }
 
 .navbar__ctas {
   display: flex;
-  @include large("up") {
+  white-space: nowrap;
+  position: relative;
+  right: 30px;
+  @include large("down") {
+    right: 50px;
 
-    white-space: nowrap;
   }
   span {
     cursor: pointer;
@@ -124,3 +137,23 @@ a {
     // top: -15%;
   }
 }
+
+// .navbar__bottom {
+//   position: fixed;
+//   bottom: 0%;
+//   // left: 50%;
+//   //   transform: translateX(-50%);
+// }
+
+// .navbar__bottom__container {
+//   display: grid;
+//   grid-template-columns: 25% 25% 25% 25%;
+//   width: 100vw;
+// }
+
+// .navbar__bottom__link {
+//   // border: 1px solid blue;
+//   background-color: blue;
+//   padding: 30px;
+//   color: white;
+// }
