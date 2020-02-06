@@ -10,7 +10,7 @@
 					{{ itemName }}
 				</div>
 				<div>
-					{{ setCurrencyType('us', 'USD', 'us') }}
+					{{ setCurrencyType(CODE, CURRENCY, COUNTRY) }}
 				</div>
 				<button class="button button--success">
 					Add to Cart
@@ -34,6 +34,7 @@
 <script>
 import ProductModal from '@/components/Products/ProductModal'
 import SetCurrencyType from '@/mixins/currencyMixin'
+import { mapGetters } from 'vuex'
 export default {
 	components: {
 		ProductModal,
@@ -63,6 +64,9 @@ export default {
 		},
 	},
 	mixins: [SetCurrencyType],
+	computed: {
+		...mapGetters(['CODE', 'COUNTRY', 'CURRENCY']),
+	},
 }
 </script>
 

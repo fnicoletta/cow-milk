@@ -6,12 +6,15 @@
 				Countries
 			</div>
 			<div v-if="dropped" class="menu">
-				<div
-					v-for="(places, i) in countries"
-					:key="i"
-					class="dropdown-items"
-				>
-					<a href="#">{{ places.name }}</a>
+				<div>
+					<a
+						@click="setCountry(places)"
+						class="dropdown-items"
+						v-for="(places, i) in countries"
+						:key="i"
+						href="#"
+						>{{ places.name }}</a
+					>
 				</div>
 			</div>
 		</div>
@@ -61,6 +64,16 @@ export default {
 				},
 			],
 		}
+	},
+	methods: {
+		setCountry(value) {
+			const values = {
+				countryCode: value.location,
+				country: value.name,
+				currencyType: value.currency,
+			}
+			this.$store.commit('setCurrency', values)
+		},
 	},
 }
 </script>
