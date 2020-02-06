@@ -56,19 +56,19 @@ a {
     @include medium("down") {
       display: none;
     }
-  span {
-    &:hover {
-      color: darken($white, 22%);
+    span {
+      &:hover {
+        color: darken($white, 22%);
+      }
     }
-  }
-  a {
-    color: $white;
-    cursor: text;
-    &:hover {
+    a {
       color: $white;
+      cursor: text;
+      &:hover {
+        color: $white;
+      }
     }
   }
-}
 }
 
 .navbar--transparent {
@@ -90,31 +90,23 @@ a {
 }
 
 .navbar__container-items {
-  display: grid;
-  grid-template-columns: 44% 45.1% 7%;
+  display: flex;
+  justify-content: space-between;
   list-style: none;
-  @include large("down") {
-    grid-template-columns: 42% 46.1% 7%;
-  }
- 
+  align-items: center;
 }
 
 .navbar__links {
   display: flex;
   @include medium("down") {
-      display: none;
-    }
+    display: none;
+  }
 }
 
 .navbar__ctas {
   display: flex;
   white-space: nowrap;
   position: relative;
-  right: 30px;
-  @include large("down") {
-    right: 50px;
-
-  }
   span {
     cursor: pointer;
     &:hover {
@@ -133,10 +125,52 @@ a {
   position: relative;
   img {
     // position: absolute;
-    width: 20px;
+    width: 60px;
     // top: -15%;
   }
 }
+
+.navbar__cta-link--options {
+  img {
+    width: 50px;
+    cursor: pointer;
+    transition: $default-timing ease-in;
+    opacity: 0.88;
+    &:hover {
+      transform: scale(1.04);
+      opacity: 1;
+    }
+  }
+}
+.navbar--theme {
+  .navbar-panel {
+
+    a {
+      color: $black;
+    }
+  }
+}
+  .navbar-panel {
+    h3 {
+    text-align: center;
+  }
+  ul {
+    padding: 0;
+    text-align: center;
+    list-style: none;
+  }
+  li, a {
+    font-size: 16px;
+    padding: 8px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    &:hover {
+      color: $red;
+    }
+  }
+}
+
 
 // .navbar__bottom {
 //   position: fixed;
