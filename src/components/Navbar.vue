@@ -27,7 +27,7 @@
             <li>Events</li>
           </router-link>
         </div>
-        <div class="navbar__ctas">
+        <div v-if="$store.state.auth.resolved" class="navbar__ctas">
           <a v-if="$store.state.auth.user" class="navbar__cta-link--options">
             <img
             @click="toggleOptions"
@@ -43,6 +43,7 @@
           </a>
           <NavbarPanel :close="toggleOptions" v-if="options" />
         </div>
+        <Spinner v-else />
       </ul>
     </div>
   </div>
