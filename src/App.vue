@@ -30,13 +30,13 @@ export default {
 			this.showModal = false
 		},
 	},
-	mounted () {
-	 if (this.getCookie('jwt-token')) {
-		 this.$store.dispatch('auth/getUser', this.getCookie('jwt-token'))
-	 } else {
-		 this.$store.commit('auth/setResolved', true)
-	 }
-	}
+	mounted() {
+		if (this.getCookie('jwt-token')) {
+			this.$store.dispatch('auth/getUser', this.getCookie('jwt-token'))
+		} else {
+			this.$store.commit('auth/setResolved', true)
+		}
+	},
 }
 </script>
 
@@ -46,6 +46,13 @@ export default {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #333333;
+	background: rgb(252, 244, 237);
+	background: radial-gradient(
+		circle,
+		rgba(252, 244, 237, 1) 0%,
+		rgba(252, 244, 237, 1) 35%,
+		rgba(245, 216, 190, 1) 100%
+	);
 }
 .main-wrapper {
 	margin: 2em auto;
