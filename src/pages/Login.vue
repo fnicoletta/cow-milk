@@ -33,7 +33,7 @@
             v-if="loading"
             style="display: flex; justify-content:center; margin-top: 10px;"
           >
-            <Spinner />
+            <Spinner classes="spinner--black" />
           </div>
         </div>
       </form>
