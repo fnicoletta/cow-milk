@@ -1,6 +1,6 @@
 <template>
   <ScreenOverlay :center="true">
-    <div class="modal--white">
+    <div v-on-clickaway="closeModal" class="modal--white">
       <div class="modal--white__header">
         <div>
           <h3 class="modal--white__title">{{ title }}</h3>
@@ -16,7 +16,12 @@
 
 <script>
 import ScreenOverlay from "@/components/Misc/ScreenOverlay";
+import { directive as onClickaway } from 'vue-clickaway';
+
 export default {
+   directives: {
+    onClickaway: onClickaway,
+  },
   props: {
     closeModal: {
       type: Function,
