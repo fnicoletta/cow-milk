@@ -2,11 +2,14 @@
 	<div class="dropdown-container">
 		<h3>Not from around here?</h3>
 		<div class="dropdown-content">
-			<div class="dropdown-btn button" @click="dropped = !dropped">
-				Countries
+			<div class="btn__container">
+				<div class="dropdown-btn button" @click="dropped = !dropped">
+					Countries
+				</div>
 			</div>
+
 			<div v-if="dropped" class="menu">
-				<div>
+				<div class="margin-top-small">
 					<a
 						@click="setCountry(places)"
 						class="dropdown-items"
@@ -23,6 +26,7 @@
 
 <script>
 export default {
+	name: 'Dropdown',
 	data() {
 		return {
 			dropped: false,

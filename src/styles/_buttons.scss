@@ -1,4 +1,5 @@
 @import 'mixins';
+
 .button--large {
   width: 250px;
 }
@@ -11,6 +12,7 @@
   border: none;
   font-weight: 700;
   cursor: pointer;
+
   &:hover {
     background-color: lighten(black, 8%);
   }
@@ -22,34 +24,47 @@
 
 
 .button--transparent {
-    background-color: rgba(0,0,0,.6);
-    color: #fff;
-    &:hover {
-      background-color: lighten(black, 12%);
-    }
+  text-align: center;
+  text-decoration: none;
+  border: solid 2px black;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, .0);
+  color: black;
+  transition: .5s;
+  padding: 1%;
+  display: inline-flex;
+  cursor: pointer;
+
+  &:hover {
+    background-color: black;
+    color: #F5D8BE;
+  }
 }
 
 .button--success {
-    background-color: #5aac44;
+  background-color: #5aac44;
+  color: #fff;
+
+  &:hover {
     color: #fff;
-    &:hover {
-        color: #fff;
-        background-color: lighten(#5aac44, 7%);
-    }
+    background-color: lighten(#5aac44, 7%);
+  }
 }
 
 .button--gray {
-  background-color: rgba(9,30,66,.04);
+  background-color: rgba(9, 30, 66, .04);
   color: black;
+
   &:hover {
-    background-color: lighten(rgba(9,30,66,.04), 12%);
+    background-color: lighten(rgba(9, 30, 66, .04), 12%);
   }
 }
+
 .button--disabled {
-    background-color: rgb(245, 245, 245);
-    color: rgb(139, 138, 138);
-    pointer-events: none;
-    cursor: none;
+  background-color: rgb(245, 245, 245);
+  color: rgb(139, 138, 138);
+  pointer-events: none;
+  cursor: none;
 }
 
 .button-reset {

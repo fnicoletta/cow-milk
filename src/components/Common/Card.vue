@@ -36,6 +36,7 @@ import ProductModal from '@/components/Products/ProductModal'
 import SetCurrencyType from '@/mixins/currencyMixin'
 import { mapGetters } from 'vuex'
 export default {
+	name: 'Card',
 	components: {
 		ProductModal,
 	},

@@ -1,14 +1,17 @@
 .dropdown-container {
-   border: 5px solid $cream;
-   border-radius: 10px;
-   background-color: $cream;
    margin: 1vw;
+   text-align: center;
 }
 
 .dropdown-btn {
    cursor: pointer;
    width: max-content;
    height: max-content;
+}
+
+.btn__container {
+   display: flex;
+   justify-content: center
 }
 
 .dropdown-items {
@@ -22,6 +25,12 @@
 }
 
 .dropdown-content {
-   display: inline-flex;
+   display: flex;
+   flex-direction: column;
    justify-content: space-evenly;
+   margin: 10px 0;
+}
+
+.margin-top-small {
+   margin-top: 10px;
 }
