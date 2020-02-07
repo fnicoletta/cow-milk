@@ -1,7 +1,7 @@
 <template>
   <WhiteModal title="Login" :closeModal="closeModal">
     <div class="login">
-      <p class="login__error">
+      <p v-if="error" class="login__error">
         {{ error.error }}
       </p>
       <form @submit.prevent="login">
@@ -16,14 +16,19 @@
           />
         </div>
         <div class="auth__input">
-          <label for="email">Password</label>
+          <label for="password">Password</label>
           <input
-            placeholder="Enter your email"
-            name="email"
+            placeholder="Enter your Password"
+            name="password"
             type="password"
             class="default-input"
             v-model="password"
+            ref="password"
           />
+        </div>
+        <div class="auth__show-password">
+          <i @click="togglePass" v-if="showingPassword" class="fas fa-eye"></i>
+          <i @click="togglePass" v-else class="fas fa-eye-slash"></i>
         </div>
         <div class="auth__submit">
           <button
@@ -34,7 +39,7 @@
           </button>
         </div>
         <div
-        v-if="loading"
+          v-if="loading"
           style="display: flex; justify-content:center; margin-top: 10px;"
         >
           <Spinner color="gray" />
@@ -54,7 +59,8 @@ export default {
       email: "",
       password: "",
       loading: false,
-      error: ''
+      error: "",
+      showingPassword: false
     };
   },
   props: {
@@ -68,9 +74,18 @@ export default {
     WhiteModal
   },
   methods: {
+    togglePass() {
+      this.showingPassword = !this.showingPassword;
+      if (this.showingPassword) {
+        this.$refs.password.type = "text";
+      } else {
+        this.$refs.password.type = "password";
+      }
+    },
     login() {
+      this.$refs.password.type = "password";
       this.loading = true;
-      this.error = ''
+      this.error = "";
       this.$edgewood
         .post("/signin", {
           email: this.email,
@@ -82,7 +97,7 @@ export default {
           this.setCookie("jwt-token", data.token, 1);
           this.$store.commit("auth/setUser", data.user);
           // this.$router.push("/");
-          this.closeModal()
+          this.closeModal();
         })
         .catch(err => {
           if (err.response) {
@@ -98,30 +113,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.login {
-  height: 100%;
-  margin-top: 15px;
-  .default-input {
-    width: 90%;
-    display: block;
-    margin: 0 auto;
-  }
-  label {
-    margin-left: 25px;
-  }
-  .auth__input {
-    margin: 10px 0;
-  }
-  .auth__submit {
-    text-align: center;
-    button {
-      width: 90%;
-    }
-  }
-}
-.login__error {
-  color: red;
-  text-align: center;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -1,0 +1,38 @@
+.login {
+  height: 100%;
+  margin-top: 15px;
+}
+.login__error {
+  color: red;
+  text-align: center;
+}
+
+.default-input {
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+}
+label,
+.auth__show-password {
+  margin-left: 25px;
+}
+.auth__show-password {
+  font-size: 1.5em;
+  i {
+    cursor: pointer;
+    transition: $default-timing;
+    &:hover {
+      color: lighten($black, 8%);
+      transform: translateY(-2px);
+    }
+  }
+}
+.auth__input {
+  margin: 10px 0;
+}
+.auth__submit {
+  text-align: center;
+  button {
+    width: 90%;
+  }
+}
