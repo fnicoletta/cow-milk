@@ -1,1 +1,15 @@
 $default-timing: .2s;
+
+
+.slide-up-enter-active, .slide-up-leave-active {
+  transition: transform .5s;
+}
+ .slide-up-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  transform: translateY(700px);
+  position: absolute;
+}
+
+.slide-up-enter {
+    transform: translateY(-500px);
+    position: absolute;
+}
