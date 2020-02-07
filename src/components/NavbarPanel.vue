@@ -58,7 +58,7 @@ export default {
         .then(({ data }) => {
           this.loading = false;
           this.$store.commit("auth/setUser", null);
-          this.$router.push("/login");
+          this.close()
         })
         .catch(err => {
           this.loading = false;
