@@ -6,16 +6,15 @@
   background-position: center;
   position: relative;
   .panel {
-    @include query($screen-md+1, "", "up") {
+    @include query($screen-md + 1, "", "up") {
       right: 3%;
     }
 
     @include small("down") {
       width: 80vw;
       ul {
-        
       }
-      a  {
+      a {
         display: block;
         padding: 0;
         width: 100%;
@@ -131,6 +130,9 @@ a {
   display: flex;
   white-space: nowrap;
   position: relative;
+  @include medium("up") {
+    flex-basis: 25%;
+  }
   @include medium("down") {
     flex-basis: 100%;
     display: flex;
@@ -144,6 +146,10 @@ a {
   }
   a {
     cursor: text;
+    @include medium("up") {
+      width: 100%;
+      text-align: right;
+    }
     &:hover {
       color: $black;
     }
@@ -151,6 +157,9 @@ a {
 }
 
 .navbar__logo {
+  @include medium("up") {
+    flex-basis: 25%;
+  }
   @include medium("down") {
     position: absolute;
     left: 0%;
