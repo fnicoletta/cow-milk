@@ -1,9 +1,16 @@
 <template>
   <WhiteModal title="Login" :closeModal="closeModal">
     <div class="login">
-      <p v-if="error" class="login__error">
-        {{ error.error }}
-      </p>
+      <div class="auth__errors" v-if="validationErrors">
+      <ul v-if="Array.isArray(validationErrors)">
+          <li :key="i" v-for="(error, i) in validationErrors">
+            {{ error }}
+          </li>
+        </ul>
+        <span v-else>
+          {{ validationErrors }}
+        </span>
+        </div>
       <form @submit.prevent="login">
         <div class="auth__input">
           <label for="email">Email</label>
@@ -59,7 +66,7 @@ export default {
       email: "",
       password: "",
       loading: false,
-      error: "",
+      errors: null,
       showingPassword: false
     };
   },
@@ -73,6 +80,21 @@ export default {
   components: {
     WhiteModal
   },
+    computed: {
+      validationErrors() {
+        console.log("here")
+        if (this.errors) {
+          if (this.errors.errors) {
+            return errors.error
+            } else {
+            let errors = Object.values(this.errors);
+            errors = errors.flat();
+            return errors;
+          }
+        }
+        return null;
+      }
+    },
   methods: {
     togglePass() {
       this.showingPassword = !this.showingPassword;
@@ -101,7 +123,13 @@ export default {
         })
         .catch(err => {
           if (err.response) {
-            this.error = err.response.data;
+            console.log(err.response.data)
+            console.log(err.response.status)
+            if (err.response.status === 422) {
+              this.errors = err.response.data.errors;
+            } else {
+              this.errors = err.response.data;
+            }
           } else {
             console.log(err);
             alert("Something went wrong...");

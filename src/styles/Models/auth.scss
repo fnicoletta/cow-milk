@@ -36,3 +36,18 @@ label,
     width: 90%;
   }
 }
+
+.auth__errors {
+  color: red;
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  border-radius: 3px;
+  ul {
+    list-style-position: inside;
+    text-align: left;
+  }
+}

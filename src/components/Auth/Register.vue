@@ -1,6 +1,13 @@
 <template>
   <WhiteModal title="Register" :closeModal="closeModal">
     <div class="register">
+      <div class="auth__errors">
+        <ul v-if="validationErrors">
+          <li :key="i" v-for="(error, i) in validationErrors">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
       <form @submit.prevent="register">
         <div class="auth__input">
           <label for="name">Name</label>
@@ -89,10 +96,20 @@ export default {
       email: "",
       password: "",
       passwordConfirm: "",
-      error: "",
+      errors: null,
       loading: false,
       showingPassword: false
     };
+  },
+  computed: {
+    validationErrors() {
+      if (this.errors) {
+        let errors = Object.values(this.errors);
+        errors = errors.flat();
+        return errors;
+      }
+      return null;
+    }
   },
   methods: {
     togglePass() {
@@ -112,6 +129,7 @@ export default {
       this.passwordConfirm = "";
     },
     register() {
+      this.errors = null
       this.$refs.password.type = "password";
       this.$refs.passwordConfirm.type = "password";
       this.loading = true;
@@ -129,8 +147,9 @@ export default {
           this.emptyFields();
         })
         .catch(err => {
-          console.log(err);
-          alert("Something went wrong...");
+          console.log(err.response.data.errors);
+          this.errors = err.response.data.errors;
+          // alert("Something went wrong...");
           this.loading = false;
         });
     }
