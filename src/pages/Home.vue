@@ -1,6 +1,6 @@
 <template>
 	<Layout>
-		<div class="home container main-wrapper">
+		<div class="home main-wrapper">
 			<h1 class="text-center">
 				Naturally fed. Naturally crafted. Naturally good.
 			</h1>
