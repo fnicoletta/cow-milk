@@ -1,7 +1,7 @@
 <template>
 	<Layout>
 		<div class="home main-wrapper">
-			<h1 class="text-center">
+			<h1 class="text-center" style="color: darkred">
 				Naturally fed. Naturally crafted. Naturally good.
 			</h1>
 			<h2 class="text-center">
@@ -45,18 +45,18 @@ export default {
 	methods: {
 		getProducts() {
 			if (!this.featuredProducts) {
-				this.$store.dispatch('products/getAllProducts')
+				this.$store.dispatch("products/getAllProducts")
 			}
-		},
+		}
 	},
 	computed: {
 		featuredProducts() {
 			return this.$store.state.products.all
-		},
+		}
 	},
 	mounted() {
 		this.getProducts()
-	},
+	}
 }
 </script>
 

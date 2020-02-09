@@ -1,24 +1,40 @@
 <template>
 	<div class="container__footer">
-		<h2 class="footer-title text-center">Footer</h2>
+		<h2 class="footer-title text-center">Contact Us</h2>
 		<div class="icon-container">
-			<facebook-icon class="icon"></facebook-icon>
-			<twitter-icon class="icon"></twitter-icon>
-			<instagram-icon class="icon"></instagram-icon>
-			<mail-icon class="icon"></mail-icon>
+			<a
+				style="color: antiquewhite"
+				href="https://www.facebook.com"
+				target="_blank"
+				><facebook-icon class="icon"></facebook-icon
+			></a>
+			<a
+				style="color: antiquewhite"
+				href="https://www.twitter.com"
+				target="_blank"
+				><twitter-icon class="icon"></twitter-icon
+			></a>
+			<a
+				style="color: antiquewhite"
+				href="https://www.instagram.com"
+				target="_blank"
+				><instagram-icon class="icon"></instagram-icon
+			></a>
+			<a
+				style="color: antiquewhite"
+				href="https://www.gmail.com"
+				target="_blank"
+				><mail-icon class="icon"></mail-icon
+			></a>
 		</div>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio,
-			dolorum odio eos at asperiores quis ipsa harum vero, labore molestias
-			temporibus minima voluptatibus! Officia, iusto! Similique magni iure
-			sit id, deleniti sapiente doloremque ratione voluptatem molestiae quod
-			ipsum asperiores modi ipsam. Velit repellendus illum ducimus officiis.
-			Ipsa sunt id praesentium eaque suscipit repellendus. Aliquam, animi
-			suscipit repudiandae natus ipsam eius adipisci harum nobis porro qui ad
-			at reiciendis nulla alias explicabo asperiores nisi nihil quisquam
-			fuga, blanditiis quam eos dolores debitis exercitationem. Saepe enim
-			deleniti possimus et, assumenda inventore atque, incidunt cumque fuga
-			modi dicta veniam fugit debitis
+		<p class="text-center">
+			Visit our on-farm retail store for<br />
+			handcrafted cheese from grass-fed cows
+		</p>
+		<hr class="hr" />
+		<p class="text-center footer__mobile-text" style="opacity: 65%">
+			123 Milky Way &bull; San Jose, CA 95123 &bull; Phone: 555.555.5555
+			&bull; Fax: 555.555.5555 &bull; email@address.com
 		</p>
 	</div>
 </template>
@@ -40,34 +56,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.container__footer {
-	background: $brown;
-	color: white;
-	border: solid $brown 3px;
-}
-
-.icon-container {
-	display: flex;
-	justify-content: center;
-}
-
-.icon {
-	font-size: 20px;
-	margin: 0 8px;
-	padding: 4px;
-	border: 1px solid white;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: 0.5s;
-
-	&:hover {
-		color: $brown;
-		background: white;
-	}
-}
-
-.footer-title {
-	margin: 15px;
-}
-</style>
+<style lang="scss"></style>

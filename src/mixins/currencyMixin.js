@@ -19,7 +19,7 @@ export default {
          return new Intl.NumberFormat(countryCode, {
             style: 'currency',
             currency: currencyType,
-         }).format((1 / this.exchangeRates[country]) * price)
+         }).format((1 * this.exchangeRates[country]) * price)
       },
    },
 }

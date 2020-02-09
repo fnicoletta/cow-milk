@@ -1,0 +1,40 @@
+.container__footer {
+   background: $brown;
+   color: antiquewhite;
+   border: solid $brown 3px;
+}
+
+.icon-container {
+   display: flex;
+   justify-content: center;
+}
+
+.icon {
+   font-size: 20px;
+   margin: 0 8px;
+   padding: 4px;
+   border: 1px solid antiquewhite;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: 0.5s;
+
+   &:hover {
+      color: $brown;
+      background: white;
+   }
+}
+
+.footer-title {
+   margin: 15px;
+}
+
+.hr {
+   margin: 0 15vw;
+   opacity: 40%;
+}
+
+@include small(down) {
+   .footer__mobile-text {
+      margin-bottom: 80px;
+   }
+}
