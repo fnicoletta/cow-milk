@@ -192,7 +192,16 @@ a {
     }
   }
 }
+.navbar-panel__logout {
+  @include medium("up") {
+    margin: 0 20px;
+  }
+}
 .navbar-panel {
+  @include medium("up") {
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
   h3 {
     text-align: center;
   }
@@ -200,6 +209,12 @@ a {
     padding: 0;
     text-align: center;
     list-style: none;
+  }
+  a {
+    @include medium("up") {
+    width: auto;
+    margin: 0 10px;
+    }
   }
   li,
   a {

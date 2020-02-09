@@ -17,7 +17,7 @@
             Settings
           </li>
         </router-link>
-        <li @click="logout">
+        <li class="navbar-panel__logout" @click="logout">
           Logout
         </li>
       </ul>
