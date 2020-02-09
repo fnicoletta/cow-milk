@@ -1,16 +1,19 @@
 <template>
-  <ScreenOverlay :center="true">
-    <div v-on-clickaway="closeModal" class="modal--white">
-      <div class="modal--white__header">
+  <ScreenOverlay v-if="show" :center="true">
+    <transition name="slide-up">
+    <div v-if="show" v-on-clickaway="hideModal" class="modal--white">
+      <div :class="!includeTitle ? 'modal__white--no-title' : ''" class="modal--white__header">
+        <div v-if="centerTitle" class="filler"></div>
         <div>
-          <h3 class="modal--white__title">{{ title }}</h3>
+          <h3 class="modal--white__title"><template v-if="includeTitle">{{ title }}</template></h3>
         </div>
         <div class="modal__white__close">
-          <span @click="closeModal">X</span>
+          <span @click="hideModal">X</span>
         </div>
       </div>
       <slot />
     </div>
+    </transition>
   </ScreenOverlay>
 </template>
 
@@ -22,6 +25,12 @@ export default {
    directives: {
     onClickaway: onClickaway,
   },
+  methods: {
+    hideModal () {
+      this.closeModal()
+      document.body.classList.remove("modal-open");
+    }
+  },
   props: {
     closeModal: {
       type: Function,
@@ -30,10 +39,27 @@ export default {
     title: {
       type: String,
       default: ""
+    },
+    centerTitle: {
+      type: Boolean,
+      default: false
+    },
+    includeTitle: {
+      type: Boolean,
+      default: true
+    },
+    show: {
+      type: Boolean,
+      default: true
     }
   },
   components: {
     ScreenOverlay
+  },
+  mounted () {
+    if (this.show && this.closeModal) {
+      document.body.classList.add("modal-open");
+    }
   }
 };
 </script>

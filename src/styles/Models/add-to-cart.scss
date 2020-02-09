@@ -1,0 +1,35 @@
+.add-to-cart {
+    position: relative;
+    overflow-y: auto;
+    select {
+        width: 100%;
+    }
+
+    label {
+        position: relative;
+        right: 5%;
+    }
+}
+.add-to-cart__select {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.add-to-cart-image {
+    margin: 12px auto;
+    img {
+        height: 300px;
+        width: 85%;
+    }
+}
+
+.add-to-cart__submit {
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    button {
+        width: 90%;
+    }
+}

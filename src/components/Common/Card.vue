@@ -2,20 +2,24 @@
 	<!-- pass :premade="false" if you wanna use your own custom card content-->
 	<div class="card">
 		<template v-if="premade">
-			<div v-if="showProductModal">
-				<ProductModal :close="toggleModal" />
-			</div>
-			<div @click="toggleModal()" class="card-cta">
+			<WhiteModal :show="moreInfo" :includeTitle="false" :closeModal="toggleMoreInfo">
+				<div style="display: flex; justify-content:center">
+					{{ itemName}}
+				</div>
+			</WhiteModal>
+
+			<AddToCart v-if="addingToCart" :closeModal="toggleAddToCart" :product="extraProps" />
+			<div class="card-cta">
 				<div class="card-overlay-content">
 					{{ itemName }}
 				</div>
 				<div>
 					{{ setCurrencyType(CODE, CURRENCY, COUNTRY) }}
 				</div>
-				<button class="button button--success">
+				<button @click="toggleAddToCart()" class="button button--success">
 					Add to Cart
 				</button>
-				<button class="button button--success">
+				<button @click="toggleMoreInfo()" class="button button--success">
 					More Info
 				</button>
 			</div>
@@ -32,22 +36,29 @@
 </template>
 
 <script>
-import ProductModal from '@/components/Products/ProductModal'
+// import ProductModal from '@/components/Products/ProductModal'
+import WhiteModal from '@/components/Common/WhiteModal'
 import SetCurrencyType from '@/mixins/currencyMixin'
+import AddToCart from '@/components/Products/AddToCart';
 import { mapGetters } from 'vuex'
 export default {
 	name: 'Card',
 	components: {
-		ProductModal,
+	WhiteModal,
+	AddToCart
 	},
 	data() {
 		return {
-			showProductModal: false,
+			moreInfo: false,
+			addingToCart: false
 		}
 	},
 	methods: {
-		toggleModal() {
-			this.showProductModal = !this.showProductModal
+		toggleMoreInfo() {
+			this.moreInfo = !this.moreInfo
+		},
+		toggleAddToCart() {
+			this.addingToCart = !this.addingToCart
 		},
 	},
 	props: {
@@ -63,6 +74,10 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		extraProps: {
+			type: Object,
+			default: () => {}
+		}
 	},
 	mixins: [SetCurrencyType],
 	computed: mapGetters(['CODE', 'COUNTRY', 'CURRENCY']),

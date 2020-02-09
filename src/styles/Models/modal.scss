@@ -99,16 +99,14 @@
   position: relative;
   max-width: 500px;
   padding: 15px 4px;
+  overflow: auto;
+  max-height: calc(100vh - 50px);
   @include small("down") {
     width: 90%;
   }
 }
 
 .modal__white__close {
-//   position: absolute;
-//   right: 1%;
-//   top: 0%;
-//   padding: 10px 15px;
   span {
     cursor: pointer;
     &:hover {
@@ -116,9 +114,11 @@
     }
   }
 }
+.modal__white--no-title {
+  border: none;
+}
 h3 {
 	margin: 0;
-	// border-bottom: 1px solid rgb(204, 201, 201);
 	padding: 4px;
 	margin-bottom: 4px;
 }

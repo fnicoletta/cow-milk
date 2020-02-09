@@ -1,5 +1,5 @@
 @import 'mixins';
-
+@import 'colors';
 .button--large {
   width: 250px;
 }
@@ -48,6 +48,15 @@
   &:hover {
     color: #fff;
     background-color: lighten(#5aac44, 7%);
+  }
+}
+
+.button--secondary {
+  background-color: $black;
+  color: $white;
+  &:hover {
+    color: $white;
+    background-color: lighten($black, 7%);
   }
 }
 
