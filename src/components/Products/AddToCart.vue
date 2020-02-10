@@ -70,6 +70,8 @@ export default {
     addToCart () {
       // go to store and send cart batch
       console.log(this.cartBatch)
+      this.$store.dispatch("cart/addToCart", this.cartBatch)
+      console.log(this.$store.state.cart.cart[0])
     },
   },
   computed: {
