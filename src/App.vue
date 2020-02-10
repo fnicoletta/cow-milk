@@ -8,41 +8,43 @@
 </template>
 
 <script>
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import Modal from '@/components/Modal'
-import cookieMixin from '@/mixins/cookiesMixin'
+import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
+import Modal from "@/components/Modal"
+import cookieMixin from "@/mixins/cookiesMixin"
 export default {
-	name: 'app',
+	name: "app",
 	mixins: [cookieMixin],
 	components: {
 		Navbar,
 		Footer,
-		Modal,
+		Modal
 	},
 	data() {
 		return {
-			showModal: true,
+			showModal: true
 		}
 	},
 	methods: {
 		closeModal() {
 			this.showModal = false
-		},
-	},
-	mounted() {
-		if (this.getCookie('jwt-token')) {
-			this.$store.dispatch('auth/getUser', this.getCookie('jwt-token'))
-		} else {
-			this.$store.commit('auth/setResolved', true)
 		}
 	},
+	mounted() {
+		if (this.getCookie("jwt-token")) {
+			this.$store.dispatch("auth/getUser", this.getCookie("jwt-token"))
+		} else {
+			this.$store.commit("auth/setResolved", true)
+		}
+	}
 }
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
 #app {
-	font-family: 'Avenir', Helvetica, Arial, sans-serif;
+	font-family: "Avenir", Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #333333;
@@ -53,6 +55,7 @@ export default {
 		rgba(252, 244, 237, 1) 35%,
 		rgba(245, 216, 190, 1) 100%
 	);
+	font-family: "Montserrat", sans-serif;
 }
 .main-wrapper {
 	margin: 2em auto;

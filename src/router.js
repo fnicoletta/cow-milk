@@ -4,12 +4,27 @@ import Home from "./pages/Home.vue";
 import Events from "./pages/Events.vue";
 import Products from "./pages/Products";
 import NotFound from './pages/NotFound.vue';
-import { cookieFunctions } from '@/mixins/cookiesMixin';
+import Cart from './pages/Cart.vue'
+import {
+  cookieFunctions
+} from '@/mixins/cookiesMixin';
 Vue.use(VueRouter);
-const routes = [
-  { path: "/", component: Home },
-  { path: "/products", component: Products },
-  { path: "/events", component: Events },
+const routes = [{
+    path: "/",
+    component: Home
+  },
+  {
+    path: "/products",
+    component: Products
+  },
+  {
+    path: "/events",
+    component: Events
+  },
+  {
+    path: "/cart",
+    component: Cart
+  },
   // { path: "/login", component: Login, meta : { guest: true } },
   // { path: "/register", component: Register, meta : { guest: true } },
   {
@@ -25,7 +40,10 @@ const router = new VueRouter({
   mode: "history",
   base: __dirname,
   scrollBehavior(to, from, savedPosition) {
-    return { x: 0, y: 0 };
+    return {
+      x: 0,
+      y: 0
+    };
   },
   routes // short for `routes: routes`
 });
@@ -35,14 +53,18 @@ router.beforeEach((to, from, next) => {
     if (!cookieFunctions.getCookie("jwt-token")) {
       next({
         path: "/login",
-        params: { nextUrl: to.fullPath }
+        params: {
+          nextUrl: to.fullPath
+        }
       });
     }
   } else if (to.matched.some(record => record.meta.guest)) {
     if (!cookieFunctions.getCookie("jwt-token")) {
       next();
     } else {
-      next({ path: "/" });
+      next({
+        path: "/"
+      });
     }
   } else {
     next();
