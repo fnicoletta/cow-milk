@@ -1,6 +1,5 @@
 <template>
 	<div id="app">
-		<Modal v-if="showModal" :closeModal="closeModal" />
 		<transition mode="out-in" name="fade">
 			<router-view> </router-view>
 		</transition>
@@ -10,25 +9,14 @@
 <script>
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
-import Modal from "@/components/Modal"
+
 import cookieMixin from "@/mixins/cookiesMixin"
 export default {
 	name: "app",
 	mixins: [cookieMixin],
 	components: {
 		Navbar,
-		Footer,
-		Modal
-	},
-	data() {
-		return {
-			showModal: true
-		}
-	},
-	methods: {
-		closeModal() {
-			this.showModal = false
-		}
+		Footer
 	},
 	mounted() {
 		if (this.getCookie("jwt-token")) {
