@@ -10,7 +10,7 @@
 				>
 					<img :src="products.image" />
 					<div class="cart__items-info">
-						<h4>{{ products.name }} <br /></h4>
+						<h4>{{ products.name }}({{ products.size }}) <br /></h4>
 						<h4>
 							Quantity:
 							<select

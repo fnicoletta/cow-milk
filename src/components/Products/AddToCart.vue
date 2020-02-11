@@ -113,6 +113,7 @@ export default {
         name: this.product.name,
         image: this.product.image,
         quantity: this.cartQuantity,
+        size: this.cartSize,
         cartID: `${this.product.id}-${this.cartSize}`
       };
     }

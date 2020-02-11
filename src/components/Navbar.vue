@@ -1,7 +1,11 @@
 <template>
 	<div class="navbar">
+		<ScaleTransition :duration="200">
 		<Login v-if="loggingIn" :closeModal="toggleLogin" />
+		</ScaleTransition>
+		<ScaleTransition :duration="200">
 		<Register v-if="registering" :closeModal="toggleRegister" />
+		</ScaleTransition>
 		<div
 			class="navbar__container"
 			:class="

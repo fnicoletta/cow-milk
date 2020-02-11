@@ -1,7 +1,6 @@
 <template>
   <Layout>
     <div class="events">
-      <h1>My events</h1>
       <div v-for="eventObj in events" :key="eventObj.uid">
         <div :key="i" v-for="(event, i) in eventObj.data">
           <!-- {{ event }} -->
@@ -35,7 +34,7 @@ export default {
   mounted() {
     this.$axios
       .get(
-        "https://my-next-js-blog.prismic.io/api/v1/documents/search?ref=XjRWSxAAACIAfvkq#format=json"
+        "https://my-next-js-blog.prismic.io/api/v1/documents/search?ref=XkLcThEAACIAKT8a#format=json"
       )
       .then(({ data }) => {
         this.events = data.results.filter(e => e.type === "event");
