@@ -2,13 +2,21 @@
 	<!-- pass :premade="false" if you wanna use your own custom card content-->
 	<div class="card">
 		<template v-if="premade">
-			<WhiteModal :show="moreInfo" :includeTitle="false" :closeModal="toggleMoreInfo">
+			<WhiteModal
+				:show="moreInfo"
+				:includeTitle="false"
+				:closeModal="toggleMoreInfo"
+			>
 				<div style="display: flex; justify-content:center">
-					{{ itemName}}
+					{{ itemName }}
 				</div>
 			</WhiteModal>
 
-			<AddToCart v-if="addingToCart" :closeModal="toggleAddToCart" :product="extraProps" />
+			<AddToCart
+				v-if="addingToCart"
+				:closeModal="toggleAddToCart"
+				:product="extraProps"
+			/>
 			<div class="card-cta">
 				<div class="card-overlay-content">
 					{{ itemName }}
@@ -37,15 +45,15 @@
 
 <script>
 // import ProductModal from '@/components/Products/ProductModal'
-import WhiteModal from '@/components/Common/WhiteModal'
-import SetCurrencyType from '@/mixins/currencyMixin'
-import AddToCart from '@/components/Products/AddToCart';
-import { mapGetters } from 'vuex'
+import WhiteModal from "@/components/Common/WhiteModal"
+import SetCurrencyType from "@/mixins/currencyMixin"
+import AddToCart from "@/components/Products/AddToCart"
+import { mapGetters } from "vuex"
 export default {
-	name: 'Card',
+	name: "Card",
 	components: {
-	WhiteModal,
-	AddToCart
+		WhiteModal,
+		AddToCart
 	},
 	data() {
 		return {
@@ -59,20 +67,20 @@ export default {
 		},
 		toggleAddToCart() {
 			this.addingToCart = !this.addingToCart
-		},
+		}
 	},
 	props: {
 		itemName: {
 			type: String,
-			default: '',
+			default: ""
 		},
 		image: {
 			type: String,
-			default: '',
+			default: ""
 		},
 		premade: {
 			type: Boolean,
-			default: true,
+			default: true
 		},
 		extraProps: {
 			type: Object,
@@ -80,7 +88,7 @@ export default {
 		}
 	},
 	mixins: [SetCurrencyType],
-	computed: mapGetters(['CODE', 'COUNTRY', 'CURRENCY']),
+	computed: mapGetters(["CODE", "COUNTRY", "CURRENCY"])
 }
 </script>
 
@@ -102,7 +110,7 @@ export default {
 	img {
 		width: 100%;
 		height: 225px;
-		@include medium('down') {
+		@include medium("down") {
 			height: 325px;
 		}
 	}
@@ -128,9 +136,6 @@ export default {
 	color: white;
 	button {
 		margin: 5px 2px;
-	}
-	&:hover {
-		// background-color: darken($cream, 8%);
 	}
 }
 

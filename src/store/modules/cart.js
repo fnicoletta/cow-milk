@@ -1,21 +1,23 @@
 // initial state
 const state = {
-  cart: []
+  cart: [1, 2, 3]
 };
 
 // getters
 const getters = {
-  getProducts: state => {
+  PRODUCTS: state => {
     return state.all;
   }
 };
 
 // actions
 const actions = {
-  addToCart({ commit }, cartItem) {
-      let temp = []
+  addToCart({
+    commit
+  }, cartItem) {
+    let temp = []
     if (!state.cart.length) {
-        temp = [...temp, cartItem]
+      temp = [...temp, cartItem]
       commit("setCart", temp);
       return;
     }

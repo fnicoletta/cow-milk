@@ -1,5 +1,6 @@
 <template>
 	<Layout>
+		<Modal v-if="showModal" :closeModal="closeModal" />
 		<div class="home main-wrapper">
 			<h1 class="text-center" style="color: darkred">
 				Naturally fed. Naturally crafted. Naturally good.
@@ -38,15 +39,21 @@
 </template>
 
 <script>
+import Modal from "@/components/Modal"
 export default {
 	data() {
-		return {}
+		return {
+			showModal: true
+		}
 	},
 	methods: {
 		getProducts() {
 			if (!this.featuredProducts) {
 				this.$store.dispatch("products/getAllProducts")
 			}
+		},
+		closeModal() {
+			this.showModal = false
 		}
 	},
 	computed: {
@@ -56,6 +63,9 @@ export default {
 	},
 	mounted() {
 		this.getProducts()
+	},
+	components: {
+		Modal
 	}
 }
 </script>
