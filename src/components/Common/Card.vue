@@ -25,7 +25,7 @@
           {{ itemName }}
         </div>
         <div>
-          {{ setCurrencyType(CODE, CURRENCY, COUNTRY) }}
+          {{ setCurrencyType(CODE, CURRENCY, COUNTRY, extraProps.price)}}
         </div>
         <button @click="toggleAddToCart()" class="button button--success">
           Add to Cart

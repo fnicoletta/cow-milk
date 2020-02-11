@@ -14,8 +14,8 @@ export default {
       }
    },
    methods: {
-      setCurrencyType(countryCode, currencyType, country) {
-         const price = 5
+      setCurrencyType(countryCode, currencyType, country, prodPrice) {
+         const price = prodPrice
 
          return new Intl.NumberFormat(countryCode, {
             style: 'currency',

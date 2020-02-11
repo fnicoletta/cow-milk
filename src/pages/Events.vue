@@ -14,7 +14,7 @@
           />
           <p
             :key="description.value"
-            v-for="(description, k) in event.description.value"
+            v-for="description in event.description.value"
           >
             {{ description.text }}
           </p>
