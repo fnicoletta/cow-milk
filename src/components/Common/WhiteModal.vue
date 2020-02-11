@@ -1,7 +1,7 @@
 <template>
-  <ScreenOverlay v-if="show" :center="true">
+  <ScreenOverlay :center="true">
     <transition name="slide-up">
-    <div v-if="show" v-on-clickaway="hideModal" class="modal--white">
+    <div  v-on-clickaway="hideModal" class="modal--white">
       <div :class="!includeTitle ? 'modal__white--no-title' : ''" class="modal--white__header">
         <div v-if="centerTitle" class="filler"></div>
         <div>

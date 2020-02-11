@@ -3,7 +3,7 @@
 	<div class="card">
 		<template v-if="premade">
 			<WhiteModal
-				:show="moreInfo"
+				v-if="moreInfo"
 				:includeTitle="false"
 				:closeModal="toggleMoreInfo"
 			>
