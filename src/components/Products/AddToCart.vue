@@ -94,7 +94,13 @@ export default {
 		addToCart() {
 			// go to store and send cart batch
 			this.$store.dispatch("cart/addToCart", this.cartBatch)
-			this.$store.dispatch("cart/saveCart")
+      this.$store.dispatch("cart/saveCart")
+      this.$swal({
+          title: `${this.product.name} added to cart successfully!`,
+          icon: 'success',
+          timer: 2000
+        });
+      this.closeModal()
 		}
 	},
 	computed: {
