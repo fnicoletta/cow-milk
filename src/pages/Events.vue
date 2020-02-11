@@ -1,13 +1,14 @@
 <template>
   <Layout>
     <div class="events">
+      <h1 style="width: 100%;" class="text-center">Events</h1>
       <div class="events__item" v-for="eventObj in events" :key="eventObj.uid" >
         <div class="events__item__content" :key="i" v-for="(event, i) in eventObj.data" :style="`background-image: url(${event.image.value.main.url})`">
           <!-- {{ event }} -->
           <div class="event__text">
-
-          <h2 :key="j" v-for="(title, j) in event.title.value">
-            {{ title.text }}
+          <h2>
+            {{ event.title.value[0].text }}
+            <!-- <span class="event__dates">({{event.start.value}}<template v-if="event.end">-{{event.end.value}}</template>)</span> -->
           </h2>
           <p
             :key="description.value"

@@ -2,10 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 20px;
 }
 .events__item {
-  flex-basis: 38%;
-  margin: 0 8px;
+  flex-basis: 37%;
+  margin: 5px 8px;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.5);
   transition: transform $default-timing;
@@ -33,4 +34,8 @@
   height: 100px;
   overflow: hidden;
   transition: height $default-timing;
+}
+.event__dates {
+    font-size: 20px;
+    color: rgb(204, 204, 204);
 }
