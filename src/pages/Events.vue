@@ -1,23 +1,21 @@
 <template>
   <Layout>
     <div class="events">
-      <div v-for="eventObj in events" :key="eventObj.uid">
-        <div :key="i" v-for="(event, i) in eventObj.data">
+      <div class="events__item" v-for="eventObj in events" :key="eventObj.uid" >
+        <div class="events__item__content" :key="i" v-for="(event, i) in eventObj.data" :style="`background-image: url(${event.image.value.main.url})`">
           <!-- {{ event }} -->
+          <div class="event__text">
+
           <h2 :key="j" v-for="(title, j) in event.title.value">
             {{ title.text }}
           </h2>
-          <img
-            :width="event.image.value.main.dimensions.width"
-            :src="event.image.value.main.url"
-            :alt="event.image.value.main.alt"
-          />
           <p
             :key="description.value"
             v-for="description in event.description.value"
           >
             {{ description.text }}
           </p>
+          </div>
         </div>
       </div>
     </div>

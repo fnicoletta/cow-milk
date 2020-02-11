@@ -1,0 +1,36 @@
+.events {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.events__item {
+  flex-basis: 38%;
+  margin: 0 8px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: transform $default-timing;
+  &:hover {
+    transform: scale(1.03);
+    .event__text {
+      height: 60%;
+    }
+  }
+}
+.events__item__content {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+}
+
+.event__text {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100px;
+  overflow: hidden;
+  transition: height $default-timing;
+}
