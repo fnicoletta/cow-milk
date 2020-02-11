@@ -5,6 +5,7 @@
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+
   .panel {
     @include query($screen-md + 1, "", "up") {
       right: 3%;
@@ -12,13 +13,15 @@
 
     @include small("down") {
       width: 80vw;
-      ul {
-      }
+
+      ul {}
+
       a {
         display: block;
         padding: 0;
         width: 100%;
       }
+
       li {
         width: 100%;
         margin: auto 0;
@@ -28,6 +31,7 @@
     }
   }
 }
+
 .navbar__container {
   width: 100%;
 }
@@ -48,11 +52,13 @@ a {
   animation-name: fade-nav-in;
   animation-duration: 0.4s;
   transition: 0.4s;
+
   @keyframes fade-nav-in {
     from {
       transform: translateY(-200px);
       background-color: rgba(0, 0, 0, 0);
     }
+
     to {
       transform: translateY(0px);
       background-color: rgba(0, 0, 0, 0.788);
@@ -61,6 +67,7 @@ a {
 
   a {
     color: $white;
+
     &:hover {
       color: darken($white, 22%);
     }
@@ -69,6 +76,7 @@ a {
   .router-link-exact-active {
     font-weight: bold;
     color: $white;
+
     &:hover {
       color: $white;
     }
@@ -80,9 +88,11 @@ a {
         color: darken($white, 22%);
       }
     }
+
     a {
       color: $white;
       cursor: text;
+
       &:hover {
         color: $white;
       }
@@ -94,14 +104,17 @@ a {
   padding-top: 5px;
   padding-bottom: 5px;
   transition: 0.4s;
+
   a {
     &:hover {
       color: lighten($black, 22%);
     }
   }
+
   .router-link-exact-active {
     font-weight: bold;
     color: $black;
+
     &:hover {
       color: $black;
     }
@@ -113,6 +126,7 @@ a {
   justify-content: space-between;
   list-style: none;
   align-items: center;
+
   @include medium("down") {
     justify-content: center;
     align-items: flex-start;
@@ -121,6 +135,7 @@ a {
 
 .navbar__links {
   display: flex;
+
   @include medium("down") {
     display: none;
   }
@@ -130,26 +145,33 @@ a {
   display: flex;
   white-space: nowrap;
   position: relative;
+
   @include medium("up") {
     flex-basis: 25%;
   }
+
   @include medium("down") {
     flex-basis: 100%;
     display: flex;
     justify-content: center;
   }
+
   span {
     cursor: pointer;
+
     &:hover {
       color: lighten($black, 22%);
     }
   }
+
   a {
     cursor: text;
+
     @include medium("up") {
       width: 100%;
       text-align: right;
     }
+
     &:hover {
       color: $black;
     }
@@ -160,12 +182,15 @@ a {
   @include medium("up") {
     flex-basis: 25%;
   }
+
   @include medium("down") {
     position: absolute;
     left: 0%;
     display: none;
   }
+
   position: relative;
+
   img {
     // position: absolute;
     width: 60px;
@@ -179,12 +204,14 @@ a {
     cursor: pointer;
     transition: $default-timing ease-in;
     opacity: 0.88;
+
     &:hover {
       transform: scale(1.04);
       opacity: 1;
     }
   }
 }
+
 .navbar--theme {
   .navbar-panel {
     a {
@@ -192,36 +219,43 @@ a {
     }
   }
 }
+
 .navbar-panel__logout {
   @include medium("up") {
     margin: 0 20px;
   }
 }
+
 .navbar-panel {
   @include medium("up") {
     padding-bottom: 10px;
     padding-top: 10px;
   }
+
   h3 {
     text-align: center;
   }
+
   ul {
     padding: 0;
     text-align: center;
     list-style: none;
   }
+
   a {
     @include medium("up") {
-    width: auto;
-    margin: 0 10px;
+      width: auto;
+      margin: 0 10px;
     }
   }
+
   li,
   a {
     font-size: 16px;
     display: inline-block;
     cursor: pointer;
     text-align: center;
+
     &:hover {
       color: $red;
     }
@@ -231,14 +265,18 @@ a {
 .navbar__bottom {
   position: fixed;
   bottom: -2.9%;
+
   a {
     padding: 0;
   }
+
   @include medium("up") {
     display: none;
   }
+
   .router-link-exact-active {
     color: $red;
+
     .navbar__bottom__link {
       color: $red;
       border-top: 2px solid $red;
@@ -250,6 +288,7 @@ a {
   display: flex;
   width: 100vw;
   justify-content: center;
+
   a {
     flex-basis: 25%;
   }
@@ -267,11 +306,19 @@ a {
   flex-direction: column;
   color: $black;
   font-size: 20px;
+
   @include small("up") {
     height: 100px;
   }
+
   // border: 1px solid black;
   span {
     display: block;
+  }
+}
+
+@include small(down) {
+  .navbar {
+    background-position: right;
   }
 }

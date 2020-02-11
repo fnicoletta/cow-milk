@@ -1,12 +1,16 @@
+import {
+  cookieFunctions
+} from '@/mixins/cookiesMixin';
+
 // initial state
 const state = {
-  cart: [1, 2, 3]
+  cart: []
 };
 
 // getters
 const getters = {
-  PRODUCTS: state => {
-    return state.all;
+  getCart(state) {
+    return state.cart;
   }
 };
 
@@ -21,6 +25,9 @@ const actions = {
       commit("setCart", temp);
       return;
     }
+
+
+
     temp = state.cart;
     let exists = temp.find(items => items.cartID === cartItem.cartID);
     if (exists) {
@@ -29,6 +36,17 @@ const actions = {
       temp = [...temp, cartItem];
     }
     commit("setCart", temp);
+  },
+  saveCart() {
+    cookieFunctions.setCookie('cart', JSON.stringify(state.cart), 99999)
+  },
+
+  removeItem({
+    commit
+  }, cartId) {
+    let temp = state.cart.filter(items => items.cartID !== cartId)
+    console.log(temp, cartId)
+    commit('setCart', temp)
   }
 };
 

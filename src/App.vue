@@ -19,10 +19,24 @@ export default {
 		Footer
 	},
 	mounted() {
-		if (this.getCookie("jwt-token")) {
-			this.$store.dispatch("auth/getUser", this.getCookie("jwt-token"))
-		} else {
-			this.$store.commit("auth/setResolved", true)
+		this.getUser()
+		this.getCart()
+	},
+	methods: {
+		getUser() {
+			if (this.getCookie("jwt-token")) {
+				this.$store.dispatch("auth/getUser", this.getCookie("jwt-token"))
+			} else {
+				this.$store.commit("auth/setResolved", true)
+			}
+		},
+		getCart() {
+			console.log(this.getCookie("cart"))
+			this.getCookie("cart") &&
+				this.$store.commit(
+					"cart/setCart",
+					JSON.parse(this.getCookie("cart"))
+				)
 		}
 	}
 }
@@ -32,7 +46,6 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
 #app {
-	font-family: "Avenir", Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #333333;

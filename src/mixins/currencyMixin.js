@@ -1,4 +1,5 @@
 export default {
+
    data() {
       return {
          exchangeRates: {
@@ -14,7 +15,7 @@ export default {
    },
    methods: {
       setCurrencyType(countryCode, currencyType, country) {
-         const price = Math.random() * (20 - 7) + 7
+         const price = 5
 
          return new Intl.NumberFormat(countryCode, {
             style: 'currency',

@@ -2,24 +2,49 @@
 	<Layout>
 		<div class="cart-container">
 			<h1 class="text-center">My Cart</h1>
-			<div class="cart" v-if="products > 0">
-				<div class="cart__items" v-for="(products, i) in cart" :key="i">
-					<img :src="require('../static/cheese_1.jpg')" />
+			<div class="cart" v-if="shoppingCart.length">
+				<div
+					class="cart__items"
+					v-for="products in shoppingCart"
+					:key="products.cartID"
+				>
+					<img :src="products.image" />
 					<div class="cart__items-info">
-						<h4>name <br /></h4>
+						<h4>{{ products.name }} <br /></h4>
 						<h4>
 							Quantity:
-							<input type="number" :value="5" min="1" max="20" />
+							<select
+								@change="saveQuantity()"
+								class="default-select"
+								name="quantity"
+								id="quantity"
+								v-model="products.quantity"
+							>
+								<option
+									:key="quantity"
+									v-for="quantity in 20"
+									:value="quantity"
+								>
+									{{ quantity }}
+								</option>
+							</select>
 							<br />
 						</h4>
-						<h4>Total: $20</h4>
+						<h4>Total: {{ products.price * products.quantity }}</h4>
 					</div>
 					<div class="button__container">
 						<button @click="saveItem" class="btn-link">
 							Save for later
 						</button>
-						<button @click="removeItem" class="btn-link">Remove</button>
+						<button @click="removeItem(products.cartID)" class="btn-link">
+							Remove
+						</button>
 					</div>
+				</div>
+				<div class="button__container">
+					<button class="btn-checkout button--transparent">
+						Checkout
+					</button>
 				</div>
 			</div>
 			<div class="text-center" v-else>
@@ -36,22 +61,27 @@
 
 <script>
 import chz1 from "../static/cheese_1.jpg"
-import { mapGetters } from "vuex"
 export default {
 	data() {
-		return {
-			cart: [...PRODUCTS]
-		}
+		return {}
 	},
 	methods: {
-		removeItem() {
-			alert("removed")
+		removeItem(cartId) {
+			this.$store.dispatch("cart/removeItem", cartId)
+			this.$store.dispatch("cart/saveCart")
 		},
 		saveItem() {
 			alert("saved")
+		},
+		saveQuantity() {
+			this.$store.dispatch("cart/saveCart")
+		}
+	},
+	computed: {
+		shoppingCart() {
+			return this.$store.state.cart.cart
 		}
 	}
-	//computed: mapGetters([PRODUCTS])
 }
 </script>
 
@@ -68,20 +98,19 @@ export default {
 }
 
 .cart__items {
-	display: inline-flex;
+	display: flex;
 	background: $cream;
 	border: 1px $red solid;
 	margin: 1vh 0;
 	img {
-		max-height: 300px;
-		max-width: 300px;
+		max-height: 170px;
 		border: 3px solid $red;
 	}
 }
 
 .button__container {
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	align-items: flex-end;
 	width: 100%;
 	.btn-link {
@@ -96,6 +125,10 @@ export default {
 
 .btn-shopping {
 	margin-bottom: 20px;
+}
+
+.btn-checkout {
+	margin: 10px auto;
 }
 
 @include small(down) {
