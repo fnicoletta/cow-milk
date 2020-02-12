@@ -12,8 +12,14 @@ h2 {
 }
 
 .home__featured-products-item {
-	max-width: 17%;
+	width: 17%;
 	margin: 0 8px;
+	@include medium("down") {
+		width: 28%;
+	}
+	@include small("down") {
+		width: 43%;
+	}
 
 	&-title {
 		opacity: 0;
