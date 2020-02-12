@@ -36,7 +36,8 @@
       </div>
       <div class="card-content">
         <div class="card-image">
-          <img @click="$router.push(route)" :src="image" :alt="itemName" />
+          <img 
+          :src="image" :alt="itemName" />
         </div>
       </div>
     </template>
