@@ -12,6 +12,7 @@
 	border-radius: 8px;
 	border: none;
 	font-weight: 700;
+	white-space: nowrap;
 	cursor: pointer;
 
 	&:hover {
@@ -31,8 +32,6 @@
 	background-color: rgba(0, 0, 0, 0);
 	color: black;
 	transition: 0.5s;
-	padding: 1%;
-	display: inline-flex;
 	cursor: pointer;
 
 	&:hover {

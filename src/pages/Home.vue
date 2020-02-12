@@ -29,11 +29,13 @@
 					}}</span>
 				</div>
 			</div>
-			<router-link to="/products">
+			
 				<div class="btn__container">
-					<button class="button--transparent">Shop Now</button>
+					<router-link to="/products">
+					<button class="button button--transparent">Shop Now</button>
+								</router-link>
+
 				</div>
-			</router-link>
 		</div>
 	</Layout>
 </template>
