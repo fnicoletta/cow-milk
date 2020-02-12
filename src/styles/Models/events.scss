@@ -10,8 +10,12 @@
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.5);
   transition: transform $default-timing;
+  @include medium("down") {
+    flex-basis: 48%;
+    margin: 7px 4px;
+  }
   @include small("down") {
-    flex-basis: 88%;
+    flex-basis: 98%;
   }
   &:hover {
     transform: scale(1.03);
