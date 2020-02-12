@@ -1,5 +1,10 @@
 <template>
 	<Layout>
+		<transition name="fade">
+		<div v-if="removing" class="notification notification-success">
+			<span class="cart__removed-text">{{ removing }} Removed</span> <span class="notification-icon"><i class="fas fa-check"></i></span>
+		</div>
+		</transition>
 		<div class="cart-container">
 			<h1 class="text-center title-color">My Cart</h1>
 			<div class="cart" v-if="shoppingCart.length">
@@ -36,7 +41,7 @@
 						<button @click="saveItem" class="btn-link">
 							Save for later
 						</button>
-						<button @click="removeItem(products.cartID)" class="btn-link">
+						<button @click="removeItem(products)" class="btn-link">
 							Remove
 						</button>
 					</div>
@@ -63,12 +68,19 @@
 import chz1 from "../static/cheese_1.jpg"
 export default {
 	data() {
-		return {}
+		return {
+			removing: ''
+		}
 	},
 	methods: {
-		removeItem(cartId) {
-			this.$store.dispatch("cart/removeItem", cartId)
+		removeItem(products) {
+			this.removing = products.name
+			this.$store.dispatch("cart/removeItem", products.cartID)
 			this.$store.dispatch("cart/saveCart")
+			const self = this;
+            setTimeout(() => {
+                self.removing = '';
+            }, 2000);
 		},
 		saveItem() {
 			alert("saved")
@@ -103,7 +115,7 @@ export default {
 	border: 1px $red solid;
 	margin: 1vh 0;
 	img {
-		max-height: 170px;
+		max-height: 200px;
 		border: 3px solid $red;
 	}
 }
@@ -121,6 +133,9 @@ export default {
 
 .cart__items-info {
 	margin: auto 15px;
+	h4 {
+		white-space: nowrap;
+	}
 }
 
 .btn-shopping {
@@ -136,6 +151,7 @@ export default {
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
+		width: 100%;
 	}
 }
 </style>

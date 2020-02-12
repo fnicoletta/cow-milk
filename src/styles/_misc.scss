@@ -1,7 +1,24 @@
 .errors {
-    list-style: none;
-    padding: 0;
-    li {
-        color: $red;
+  list-style: none;
+  padding: 0;
+  li {
+    color: $red;
+  }
+}
+
+.notification {
+  position: fixed;
+  top: 13%;
+  transform: translateX(-50%);
+  left: 50%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.notification-success {
+    i {
+        color: green;
     }
 }
