@@ -2,7 +2,7 @@
 	<Layout>
 		<Modal v-if="showModal" :closeModal="closeModal" />
 		<div class="home main-wrapper">
-			<h1 class="text-center" style="color: darkred">
+			<h1 class="text-center title-color">
 				Naturally fed. Naturally crafted. Naturally good.
 			</h1>
 			<h2 class="text-center">

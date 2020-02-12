@@ -1,6 +1,7 @@
 <template>
   <Layout>
     <div class="products main-wrapper">
+      <h1 class="text-center title-color">Products</h1>
       <template v-if="products && !loading">
         <ProductsList ref="prods" :products="products" />
         <pagination

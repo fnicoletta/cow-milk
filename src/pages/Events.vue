@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="events">
-      <h1 style="width: 100%;" class="text-center">Events</h1>
+      <h1 style="width: 100%;" class="text-center title-color">Events</h1>
       <div class="events__item" v-for="eventObj in events" :key="eventObj.uid" >
         <div class="events__item__content" :key="i" v-for="(event, i) in eventObj.data" :style="`background-image: url(${event.image.value.main.url})`">
           <!-- {{ event }} -->

@@ -1,7 +1,7 @@
 <template>
 	<Layout>
 		<div class="cart-container">
-			<h1 class="text-center">My Cart</h1>
+			<h1 class="text-center title-color">My Cart</h1>
 			<div class="cart" v-if="shoppingCart.length">
 				<div
 					class="cart__items"
