@@ -36,7 +36,7 @@
       </div>
       <div class="card-content">
         <div class="card-image">
-          <img :src="image" alt="" />
+          <img @click="$router.push(route)" :src="image" :alt="itemName" />
         </div>
       </div>
     </template>
@@ -88,6 +88,10 @@ export default {
     extraProps: {
       type: Object,
       default: () => {}
+    },
+    route: {
+      type: String,
+      default: ''
     }
   },
   mixins: [SetCurrencyType],

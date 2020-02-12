@@ -10,7 +10,7 @@
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.5);
   transition: transform $default-timing;
-  @include medium("down") {
+  @include large("down") {
     flex-basis: 48%;
     margin: 7px 4px;
   }

@@ -8,7 +8,7 @@
 					class="products-list__item"
 					:style="`animation-duration: 1.${i * 2}s`"
 				>
-					<Card :extra-props="product" :image="product.image" :item-name="product.name" />
+					<Card :route="`/products/${product.name.split(' ').join('-')}`" :extra-props="product" :image="product.image" :item-name="product.name" />
 				</div>
 			</div>
 		</div>

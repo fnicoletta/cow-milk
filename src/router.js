@@ -3,19 +3,26 @@ import VueRouter from "vue-router";
 import Home from "./pages/Home.vue";
 import Events from "./pages/Events.vue";
 import Products from "./pages/Products";
+import ProductView from "./pages/ProductView";
 import NotFound from './pages/NotFound.vue';
 import Cart from './pages/Cart.vue'
 import {
   cookieFunctions
 } from '@/mixins/cookiesMixin';
 Vue.use(VueRouter);
-const routes = [{
+const routes = [
+  {
     path: "/",
     component: Home
   },
   {
     path: "/products",
     component: Products
+  },
+  {
+    path: "/products/:product",
+    component: ProductView,
+    name: "product"
   },
   {
     path: "/events",

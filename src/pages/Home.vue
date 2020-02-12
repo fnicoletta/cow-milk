@@ -23,10 +23,14 @@
 					v-for="(product, index) in featuredProducts.data.slice(0, 3)"
 					class="home__featured-products-item"
 				>
+				<router-link
+				:to="{path: `/products/${product.name.split(' ').join('-')}`, props: {product}}"
+				>
 					<img :src="product.image" :alt="product.name" />
 					<span class="home__featured-products-item-title">{{
 						product.name
 					}}</span>
+				</router-link>
 				</div>
 			</div>
 			
