@@ -8,7 +8,7 @@
           <div class="event__text">
           <h2>
             {{ event.title.value[0].text }}
-            <!-- <span class="event__dates">({{event.start.value}}<template v-if="event.end">-{{event.end.value}}</template>)</span> -->
+            <span class="event__dates">{{dateFormat(event.start.value)}}<template v-if="event.end">-{{dateFormat(event.end.value)}}</template></span>
           </h2>
           <p
             :key="description.value"
@@ -24,16 +24,22 @@
 </template>
 
 <script>
+import moment from 'moment-js'
 export default {
   data() {
     return {
       events: null
     };
   },
+  methods: {
+    dateFormat (date) {
+     return moment(date).format('MM/DD/YYYY h:mm a').split("2020")[0]
+    }
+  },
   mounted() {
     this.$axios
       .get(
-        "https://my-next-js-blog.prismic.io/api/v1/documents/search?ref=XkLcThEAACIAKT8a#format=json"
+        "https://my-next-js-blog.prismic.io/api/v1/documents/search?ref=XkQJJhEAACUALoUa&orderings=%5Bmy.event.start%5D#format=json"
       )
       .then(({ data }) => {
         this.events = data.results.filter(e => e.type === "event");
