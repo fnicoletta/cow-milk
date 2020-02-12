@@ -14,7 +14,8 @@
     @include small("down") {
       width: 80vw;
 
-      ul {}
+      ul {
+      }
 
       a {
         display: block;
@@ -199,6 +200,11 @@ a {
     // top: -15%;
   }
 }
+.navbar__cta-link {
+	cursor: pointer;
+	animation-name: fade-in;
+    animation-duration: .9s;
+}
 
 .navbar__cta-link--options {
   img {
@@ -206,10 +212,12 @@ a {
     cursor: pointer;
     transition: $default-timing ease-in;
     opacity: 0.88;
+    animation-name: slide-in;
+    animation-duration: .4s;
 
     &:hover {
       transform: scale(1.04);
-      opacity: 1;
+      opacity: 0.88;
     }
   }
 }

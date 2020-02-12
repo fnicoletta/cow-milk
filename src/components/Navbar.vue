@@ -111,7 +111,5 @@ export default {
 </script>
 
 <style lang="scss">
-.navbar__cta-link {
-	cursor: pointer;
-}
+
 </style>

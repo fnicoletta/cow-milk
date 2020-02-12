@@ -167,6 +167,7 @@ export default {
           });
           this.loading = false;
           this.emptyFields();
+          this.hideModal()
         })
         .catch(err => {
           console.log(err.response.data.errors);
