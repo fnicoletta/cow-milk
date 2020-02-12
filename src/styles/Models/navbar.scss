@@ -212,8 +212,8 @@ a {
     cursor: pointer;
     transition: $default-timing ease-in;
     opacity: 0.88;
-    animation-name: slide-in;
-    animation-duration: .4s;
+    animation-name: fade-in;
+    animation-duration: .6s;
 
     &:hover {
       transform: scale(1.04);

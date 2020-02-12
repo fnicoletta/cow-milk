@@ -45,7 +45,7 @@ import Modal from "@/components/Modal"
 export default {
 	data() {
 		return {
-			showModal: true
+			showModal: false
 		}
 	},
 	methods: {
@@ -65,6 +65,9 @@ export default {
 	},
 	mounted() {
 		this.getProducts()
+		if (!this.$store.state.auth.user) {
+			this.showModal = true
+		}
 	},
 	components: {
 		Modal

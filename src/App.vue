@@ -31,7 +31,6 @@ export default {
 			}
 		},
 		getCart() {
-			console.log(this.getCookie("cart"))
 			this.getCookie("cart") &&
 				this.$store.commit(
 					"cart/setCart",

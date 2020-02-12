@@ -47,7 +47,7 @@
 					</div>
 				</div>
 				<div class="button__container">
-					<button class="btn-checkout button--transparent">
+					<button class="btn-checkout button button--transparent">
 						Checkout
 					</button>
 				</div>
