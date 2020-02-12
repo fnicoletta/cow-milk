@@ -1,10 +1,10 @@
 <template>
 	<div class="navbar">
 		<ScaleTransition :duration="200">
-		<Login v-if="loggingIn" :closeModal="toggleLogin" />
+		<Login :register="toggleRegister" v-if="loggingIn" :closeModal="toggleLogin" />
 		</ScaleTransition>
 		<ScaleTransition :duration="200">
-		<Register v-if="registering" :closeModal="toggleRegister" />
+		<Register :login="toggleLogin" v-if="registering" :closeModal="toggleRegister" />
 		</ScaleTransition>
 		<div
 			class="navbar__container"
@@ -49,8 +49,7 @@
 					</a>
 					<a v-if="!$store.state.auth.user" class="navbar__cta-link">
 						<li>
-							<span @click="toggleLogin">Login</span>/
-							<span @click="toggleRegister">Register</span>
+							<span @click="toggleLogin">Login</span>
 						</li>
 					</a>
 				</div>

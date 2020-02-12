@@ -148,6 +148,8 @@ a {
 
   @include medium("up") {
     flex-basis: 25%;
+    position: relative;
+    right: 8px;
   }
 
   @include medium("down") {

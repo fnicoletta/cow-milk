@@ -1,5 +1,5 @@
 <template>
-  <WhiteModal title="Register" :closeModal="closeModal">
+  <WhiteModal title="Register" :closeModal="hideModal">
     <div class="register">
       <div class="auth__errors">
         <ul v-if="validationErrors">
@@ -69,6 +69,13 @@
         >
           <Spinner color="gray" />
         </div>
+        <div class="auth__cta" v-else>
+          <span
+            >Already a member? Click
+            <span @click="switchToLogin" class="btn-link">here</span> to sign
+            in!</span
+          >
+        </div>
       </form>
     </div>
   </WhiteModal>
@@ -81,6 +88,10 @@ import cookiesMixin from "../../mixins/cookiesMixin";
 export default {
   props: {
     closeModal: {
+      type: Function,
+      default: () => {}
+    },
+    login: {
       type: Function,
       default: () => {}
     }
@@ -112,6 +123,14 @@ export default {
     }
   },
   methods: {
+    switchToLogin () {
+      this.login()
+      this.hideModal()
+    },
+    hideModal() {
+      document.body.classList.remove("modal-open");
+      this.closeModal();
+    },
     togglePass() {
       this.showingPassword = !this.showingPassword;
       if (this.showingPassword) {
@@ -129,7 +148,7 @@ export default {
       this.passwordConfirm = "";
     },
     register() {
-      this.errors = null
+      this.errors = null;
       this.$refs.password.type = "password";
       this.$refs.passwordConfirm.type = "password";
       this.loading = true;

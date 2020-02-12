@@ -99,7 +99,8 @@
   position: relative;
   max-width: 500px;
   padding: 15px 4px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-height: calc(100vh - 50px);
   @include small("down") {
     width: 90%;

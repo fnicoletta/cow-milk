@@ -1,8 +1,8 @@
 <template>
-  <WhiteModal title="Login" :closeModal="closeModal">
+  <WhiteModal title="Login" :closeModal="hideModal">
     <div class="login">
       <div class="auth__errors" v-if="validationErrors">
-      <ul v-if="Array.isArray(validationErrors)">
+        <ul v-if="Array.isArray(validationErrors)">
           <li :key="i" v-for="(error, i) in validationErrors">
             {{ error }}
           </li>
@@ -10,7 +10,7 @@
         <span v-else>
           {{ validationErrors }}
         </span>
-        </div>
+      </div>
       <form @submit.prevent="login">
         <div class="auth__input">
           <label for="email">Email</label>
@@ -51,6 +51,13 @@
         >
           <Spinner color="gray" />
         </div>
+        <div class="auth__cta" v-else>
+          <span
+            >Not a member yet? Click
+            <span @click="switchToRegister" class="btn-link">here</span> to sign
+            up!</span
+          >
+        </div>
       </form>
     </div>
   </WhiteModal>
@@ -74,28 +81,39 @@ export default {
     closeModal: {
       type: Function,
       default: () => {}
+    },
+    register: {
+      type: Function,
+      default: () => {}
     }
   },
   mixins: [cookiesMixin],
   components: {
     WhiteModal
   },
-    computed: {
-      validationErrors() {
-        console.log("here")
-        if (this.errors) {
-          if (this.errors.errors) {
-            return errors.error
-            } else {
-            let errors = Object.values(this.errors);
-            errors = errors.flat();
-            return errors;
-          }
+  computed: {
+    validationErrors() {
+      if (this.errors) {
+        if (this.errors.errors) {
+          return errors.error;
+        } else {
+          let errors = Object.values(this.errors);
+          errors = errors.flat();
+          return errors;
         }
-        return null;
       }
-    },
+      return null;
+    }
+  },
   methods: {
+    switchToRegister () {
+      this.register()
+      this.hideModal()
+    },
+    hideModal() {
+      document.body.classList.remove("modal-open");
+      this.closeModal();
+    },
     togglePass() {
       this.showingPassword = !this.showingPassword;
       if (this.showingPassword) {
@@ -123,8 +141,8 @@ export default {
         })
         .catch(err => {
           if (err.response) {
-            console.log(err.response.data)
-            console.log(err.response.status)
+            console.log(err.response.data);
+            console.log(err.response.status);
             if (err.response.status === 422) {
               this.errors = err.response.data.errors;
             } else {
