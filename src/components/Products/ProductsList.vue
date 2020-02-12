@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="products-list">
+		<div id="products-list" class="products-list">
 			<div class="products-list__items">
 				<div
 					v-for="(product, i) in products.data"

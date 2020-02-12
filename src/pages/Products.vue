@@ -2,15 +2,13 @@
   <Layout>
     <div class="products main-wrapper">
       <template v-if="products && !loading">
-        <ProductsList :products="products" />
+        <ProductsList ref="prods" :products="products" />
         <pagination
           :data="products"
           @pagination-change-page="getResults"
         ></pagination>
       </template>
-      <div v-if="loading" class="skeleton">
-
-      </div>
+      <div v-if="loading" class="skeleton"></div>
       <Loading v-if="loading" />
     </div>
   </Layout>
@@ -40,6 +38,14 @@ export default {
       this.$edgewood.get("/products?page=" + page).then(response => {
         this.$store.commit("products/setProducts", response.data);
         this.loading = false;
+        // this.$router.push("/products#products-list")
+        this.$nextTick(() => {
+          window.scroll({
+            top: 400,
+            left: 0,
+            behavior: "smooth"
+          });
+        });
       });
     }
   },
@@ -58,6 +64,5 @@ export default {
 .skeleton {
   background-color: rgb(219, 219, 219);
   height: 600px;
-
 }
 </style>
