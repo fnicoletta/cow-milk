@@ -1,11 +1,11 @@
 <template>
 	<div class="navbar">
-		<ScaleTransition :duration="200">
+		<ZoomCenterTransition :duration="200">
 		<Login :register="toggleRegister" v-if="loggingIn" :closeModal="toggleLogin" />
-		</ScaleTransition>
-		<ScaleTransition :duration="200">
+		</ZoomCenterTransition>
+		<ZoomCenterTransition :duration="200">
 		<Register :login="toggleLogin" v-if="registering" :closeModal="toggleRegister" />
-		</ScaleTransition>
+		</ZoomCenterTransition>
 		<div
 			class="navbar__container"
 			:class="
@@ -33,10 +33,9 @@
 					<router-link to="/cart"><li>Cart</li></router-link>
 				</div>
 				<div v-if="$store.state.auth.resolved" class="navbar__ctas">
+					<SlideDownTransition>
 					<NavbarPanel :close="toggleOptions" v-if="options" />
-					<!-- <div style="background-color: white; position: absolute; top: 100%; border-radius: 3px;" class="d">
-            
-          </div> -->
+					</SlideDownTransition>
 					<a
 						v-if="$store.state.auth.user"
 						class="navbar__cta-link--options"

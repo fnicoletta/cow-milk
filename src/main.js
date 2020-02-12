@@ -8,14 +8,15 @@ import Layout from '@/components/Layout'
 import Spinner from '@/components/Misc/Spinner'
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { ZoomCenterTransition } from 'vue2-transitions'
+import { ZoomCenterTransition, SlideYDownTransition } from 'vue2-transitions'
 
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$edgewood = edgewood;
 Vue.config.productionTip = false
 Vue.component("Spinner", Spinner);
-Vue.component("ScaleTransition", ZoomCenterTransition);
+Vue.component("ZoomCenterTransition", ZoomCenterTransition);
+Vue.component("SlideDownTransition", SlideYDownTransition);
 Vue.component("Layout", Layout);
 Vue.component("pagination", require("laravel-vue-pagination"));
 const options = {
