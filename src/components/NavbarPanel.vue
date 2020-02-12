@@ -1,5 +1,6 @@
 <template>
   <Panel :close="close">
+    <Loading message="Logging Out" v-if="loading" />
     <div class="navbar-panel">
       <h3>
         <template v-if="$store.state.auth.user">
@@ -27,11 +28,18 @@
 
 <script>
 import Panel from "@/components/Misc/Panel";
+import Loading from "@/components/Misc/Loading"
 import cookieMixin from "@/mixins/cookiesMixin";
 
 export default {
   components: {
-    Panel
+    Panel,
+    Loading
+  },
+  data () {
+    return {
+      loading: false
+    }
   },
   mixins: [cookieMixin],
   props: {
@@ -63,7 +71,10 @@ export default {
         .catch(err => {
           this.loading = false;
           console.log(err);
-          alert("something went wrong...");
+         this.$swal({
+            title: `Register Successful`,
+            icon: "warning"
+          });
         });
     }
   }

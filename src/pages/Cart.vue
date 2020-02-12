@@ -55,7 +55,7 @@
 			<div class="text-center" v-else>
 				<h2>Cart is empty :(</h2>
 				<router-link to="/products"
-					><button class="btn-shopping button--transparent">
+					><button class="btn-shopping button button--transparent">
 						Add to Cart
 					</button></router-link
 				>

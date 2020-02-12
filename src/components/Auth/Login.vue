@@ -137,7 +137,7 @@ export default {
           this.setCookie("jwt-token", data.token, 1);
           this.$store.commit("auth/setUser", data.user);
           // this.$router.push("/");
-          this.closeModal();
+          this.hideModal();
         })
         .catch(err => {
           if (err.response) {
@@ -150,7 +150,10 @@ export default {
             }
           } else {
             console.log(err);
-            alert("Something went wrong...");
+            this.$swal({
+            title: `Register Successful`,
+            icon: "warning"
+          });
           }
           this.loading = false;
         });

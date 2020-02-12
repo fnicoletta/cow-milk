@@ -123,9 +123,9 @@ export default {
     }
   },
   methods: {
-    switchToLogin () {
-      this.login()
-      this.hideModal()
+    switchToLogin() {
+      this.login();
+      this.hideModal();
     },
     hideModal() {
       document.body.classList.remove("modal-open");
@@ -161,14 +161,16 @@ export default {
           password_confirmation: this.passwordConfirm
         })
         .then(({ data }) => {
-          alert("Register Successful!");
+          this.$swal({
+            title: `Register Successful`,
+            icon: "success"
+          });
           this.loading = false;
           this.emptyFields();
         })
         .catch(err => {
           console.log(err.response.data.errors);
           this.errors = err.response.data.errors;
-          // alert("Something went wrong...");
           this.loading = false;
         });
     }

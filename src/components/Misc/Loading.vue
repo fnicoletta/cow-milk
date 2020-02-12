@@ -1,7 +1,8 @@
 <template>
   <ScreenOverlay :center="true">
     <div class="loading">
-      <h1>Loading</h1>
+      <h1 v-if="message">{{ message }}</h1>
+      <h1 v-else>Loading</h1>
       <div class="spinner">
   <div class="bounce1"></div>
   <div class="bounce2"></div>
@@ -16,6 +17,12 @@ import ScreenOverlay from "./ScreenOverlay";
 export default {
   components: {
     ScreenOverlay
+  },
+  props: {
+    message: {
+      type: String,
+      default: ''
+    }
   }
 };
 </script>
