@@ -77,7 +77,7 @@
         <div
           class="product-view__more-item"
           :key="prod.id"
-          v-for="prod in $store.state.products.all.data
+          v-for="prod in $store.state.products.original.data
             .filter(p => p.id !== product.id)
             .slice(0, 4)"
         >
