@@ -131,7 +131,7 @@ export default {
   computed: {
     product() {
       if (this.$store.state.products.all) {
-        return this.$store.state.products.all.data.find(
+        return this.$store.state.products.original.data.find(
           prods =>
             prods.name === this.$route.params.product.split("-").join(" ")
         );
