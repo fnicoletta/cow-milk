@@ -33,8 +33,8 @@
 		</p>
 		<hr class="hr" />
 		<p class="text-center footer__mobile-text" style="opacity: 65%">
-			123 Milky Way &bull; San Jose, CA 95123 &bull; Phone: 555.555.5555
-			&bull; Fax: 555.555.5555 &bull; email@address.com
+			123 Milky Way &bull; San Jose, CA 95123 &bull; Phone: 922.443.5515
+			&bull; Fax: 551.235.7321 &bull; support@cmilk.com
 		</p>
 	</div>
 </template>
