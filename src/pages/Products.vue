@@ -3,12 +3,29 @@
     <div class="products main-wrapper">
       <h1 class="text-center title-color">Products</h1>
       <template v-if="products && !loading">
+        <form @submit.prevent="getResults">
+          <input placeholder="Search Products..." v-model="term" type="text" class="default-input" />
+          <div class="text-center" v-if="searched">
+            Term: {{ tempTerm }}<br>
+            <button
+              @click="searched = false, term = ''"
+              type="button"
+              class="button button--secondary"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+        <div class="text-center" v-if="searched && !products.data.length">
+        No results found.
+      </div>
         <ProductsList ref="prods" :products="products" />
         <pagination
           :data="products"
           @pagination-change-page="getResults"
         ></pagination>
       </template>
+      
       <div v-if="loading" class="skeleton"></div>
       <Loading v-if="loading" />
     </div>
@@ -25,33 +42,48 @@ export default {
   },
   data() {
     return {
-      loading: false
+      loading: false,
+      term: "",
+      searched: false,
+      tempTerm: ''
     };
   },
   methods: {
     getProducts() {
       if (!this.products) {
-        this.$store.dispatch("products/getAllProducts");
+        this.$store.dispatch("products/getAllProducts", this.term);
       }
     },
     getResults(page = 1) {
+      if (this.term) {
+        this.searched = true;
+        this.tempTerm = this.term
+      } else {
+        this.searched = false;
+      }
       this.loading = true;
-      this.$edgewood.get("/products?page=" + page).then(response => {
-        this.$store.commit("products/setProducts", response.data);
-        this.loading = false;
-        // this.$router.push("/products#products-list")
-        this.$nextTick(() => {
-          window.scroll({
-            top: 400,
-            left: 0,
-            behavior: "smooth"
+
+      this.$edgewood
+        .get(`/products?term=${this.term}&page=` + page)
+        .then(response => {
+          this.$store.commit("products/setProducts", response.data);
+          this.loading = false;
+          // this.$router.push("/products#products-list")
+          this.$nextTick(() => {
+            window.scroll({
+              top: 400,
+              left: 0,
+              behavior: "smooth"
+            });
           });
         });
-      });
     }
   },
   computed: {
     products() {
+      if (!this.searched && this.$store.state.products.all) {
+        return this.$store.state.products.original;
+      }
       return this.$store.state.products.all;
     }
   },
