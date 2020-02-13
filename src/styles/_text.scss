@@ -3,10 +3,21 @@
     text-align: center;
 }
 
+.text-right {
+    text-align: right;
+}
+
 .text-gray {
     color: gray;
 }
 
 .title-color {
     color: $red;
+}
+.bold {
+    font-weight: bold;
+}
+
+.w-no-wrap {
+    white-space: nowrap;
 }

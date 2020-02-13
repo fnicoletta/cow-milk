@@ -68,6 +68,13 @@
 		background-color: lighten(rgba(9, 30, 66, 0.04), 12%);
 	}
 }
+.button--red {
+	background-color: $red;
+	color: white;
+	&:hover {
+		background-color: lighten($red, 7%);
+	}
+}
 
 .button--disabled {
 	background-color: rgb(245, 245, 245);

@@ -53,11 +53,6 @@ export default {
 		}
 	},
 	methods: {
-		getProducts() {
-			if (!this.featuredProducts) {
-				this.$store.dispatch("products/getAllProducts")
-			}
-		},
 		closeModal() {
 			this.showModal = false
 		}
@@ -68,7 +63,6 @@ export default {
 		}
 	},
 	mounted() {
-		this.getProducts()
 		if (!this.$store.state.auth.user) {
 			this.showModal = true
 		}

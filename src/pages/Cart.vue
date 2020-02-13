@@ -35,7 +35,7 @@
 							</select>
 							<br />
 						</h4>
-						<h4>Total: {{ products.price * products.quantity }}</h4>
+						<h4>Total: ${{ (products.price * products.quantity).toFixed(2) }}</h4>
 					</div>
 					<div class="button__container">
 						<button @click="saveItem" class="btn-link">
@@ -45,6 +45,9 @@
 							Remove
 						</button>
 					</div>
+				</div>
+				<div class="cart__total text-center">
+					Total ${{ cartTotal }}
 				</div>
 				<div class="button__container">
 					<button class="btn-checkout button button--transparent">
@@ -92,6 +95,13 @@ export default {
 	computed: {
 		shoppingCart() {
 			return this.$store.state.cart.cart
+		},
+		cartTotal() {
+			let total = 0
+			this.shoppingCart.forEach((cartItem) => {
+				total += cartItem.price * cartItem.quantity
+			})
+			return total.toFixed(2)
 		}
 	}
 }

@@ -22,7 +22,10 @@
             id="size"
           >
             <option :key="index" v-for="(size, index) in sizes" :value="size">
-              {{ size }}
+              {{ size
+              }}<template v-if="index > 0"
+                >(+${{ (index * 2).toFixed(2) }})</template
+              >
             </option>
           </select>
         </div>
@@ -38,6 +41,9 @@
               {{ quantity }}
             </option>
           </select>
+        </div>
+        <div class="add-to-cart__total text-center">
+          <span>Total ${{ (product.price + extraPrice).toFixed(2) }}</span>
         </div>
         <div class="add-to-cart__submit">
           <button type="submit" class="button button--secondary">
@@ -63,7 +69,8 @@ export default {
   data() {
     return {
       cartQuantity: 1,
-      cartSize: ""
+      cartSize: "",
+      extraPrice: 0
     };
   },
   props: {
@@ -81,6 +88,7 @@ export default {
       this.cartQuantity = e.target.value;
     },
     updateSize(e) {
+      this.extraPrice = this.sizes.indexOf(e.target.value) * 2;
       this.cartSize = e.target.value;
     },
     hideModal() {
@@ -109,7 +117,7 @@ export default {
     cartBatch() {
       return {
         id: this.product.id,
-        price: 5,
+        price: this.product.price + this.extraPrice,
         name: this.product.name,
         image: this.product.image,
         quantity: this.cartQuantity,

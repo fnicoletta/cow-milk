@@ -21,6 +21,7 @@ export default {
 	mounted() {
 		this.getUser()
 		this.getCart()
+		this.getProducts()
 	},
 	methods: {
 		getUser() {
@@ -36,6 +37,11 @@ export default {
 					"cart/setCart",
 					JSON.parse(this.getCookie("cart"))
 				)
+		},
+		getProducts() {
+			if (!this.$store.state.products.all) {
+				this.$store.dispatch("products/getAllProducts")
+			}
 		}
 	}
 }

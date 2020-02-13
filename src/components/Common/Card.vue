@@ -2,7 +2,7 @@
   <!-- pass :premade="false" if you wanna use your own custom card content-->
   <div class="card">
     <template v-if="premade">
-      <transition name="fade">
+      <!-- <transition name="fade">
         <WhiteModal
           v-if="moreInfo"
           :includeTitle="false"
@@ -12,7 +12,7 @@
             {{ itemName }}
           </div>
         </WhiteModal>
-      </transition>
+      </transition> -->
       <transition name="fade">
         <AddToCart
           v-if="addingToCart"
@@ -30,7 +30,7 @@
         <button @click="toggleAddToCart()" class="button button--success">
           Add to Cart
         </button>
-        <button @click="toggleMoreInfo()" class="button button--success">
+        <button @click="$router.push(route)" class="button button--success">
           More Info
         </button>
       </div>
