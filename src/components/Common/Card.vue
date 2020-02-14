@@ -30,7 +30,7 @@
         <button @click="toggleAddToCart()" class="button button--success">
           Add to Cart
         </button>
-        <button @click="$router.push(route)" class="button button--success">
+        <button @click="$router.push(route), $store.commit('products/setProduct', extraProps)" class="button button--success">
           More Info
         </button>
       </div>

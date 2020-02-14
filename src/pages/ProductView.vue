@@ -83,7 +83,10 @@
         >
           <span class="bold d-block">{{ prod.name }}</span>
           <img
-            @click="$router.push(`/products/${prod.name.split(' ').join('-')}`)"
+            @click="
+              $router.push(`/products/${prod.name.split(' ').join('-')}`),
+                $store.commit('products/setProduct', prod)
+            "
             :src="prod.image"
             :alt="prod.name"
           />
@@ -91,7 +94,7 @@
       </div>
     </div>
     <div v-else>
-      <Loading message="Getting Product" />
+      <Loading :message="$store.state.products.single" />
     </div>
   </Layout>
 </template>
@@ -99,10 +102,18 @@
 <script>
 import Loading from "@/components/Misc/Loading";
 import AddToCart from "@/components/Products/AddToCart";
+import cookieMixin from "@/mixins/cookiesMixin";
+
 export default {
   components: {
     Loading,
     AddToCart
+  },
+  mixins: [cookieMixin],
+  mounted() {
+    if (this.product) {
+      this.setCookie("prod", JSON.stringify(this.product), 999);
+    }
   },
   data() {
     return {
@@ -130,13 +141,10 @@ export default {
   },
   computed: {
     product() {
-      if (this.$store.state.products.all) {
-        return this.$store.state.products.original.data.find(
-          prods =>
-            prods.name === this.$route.params.product.split("-").join(" ")
-        );
+      if (this.$store.state.products.single) {
+        return this.$store.state.products.single;
       }
-      return null;
+      return JSON.parse(this.getCookie('prod'));
     },
     initializeSize() {
       if (this.product) {

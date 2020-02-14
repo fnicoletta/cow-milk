@@ -2,7 +2,8 @@ import { edgewood } from "../../apis/axios";
 // initial state
 const state = {
   all: null,
-  original: null
+  original: null,
+  single: null
 };
 
 // getters
@@ -34,6 +35,9 @@ const mutations = {
       state.original = products
     }
   },
+  setProduct(state, product) {
+    state.single = product
+  }
 };
 
 export default {
