@@ -8,7 +8,7 @@
           <div class="text-center" v-if="searched">
             Term: {{ tempTerm }}<br>
             <button
-              @click="searched = false, term = ''"
+              @click="searched = false, term = '', $store.commit('products/setProducts', $store.state.products.original)"
               type="button"
               class="button button--secondary"
             >
@@ -60,6 +60,7 @@ export default {
         this.tempTerm = this.term
       } else {
         this.searched = false;
+        this.$store.commit('products/setProducts', this.$store.state.products.original)
       }
       this.loading = true;
 
@@ -81,9 +82,6 @@ export default {
   },
   computed: {
     products() {
-      if (!this.searched && this.$store.state.products.all) {
-        return this.$store.state.products.original;
-      }
       return this.$store.state.products.all;
     }
   },
