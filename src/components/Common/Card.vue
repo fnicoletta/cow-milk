@@ -2,17 +2,17 @@
   <!-- pass :premade="false" if you wanna use your own custom card content-->
   <div class="card">
     <template v-if="premade">
-      <!-- <transition name="fade">
+      <transition name="fade">
         <WhiteModal
-          v-if="moreInfo"
+          v-if="$store.state.products.deleting"
           :includeTitle="false"
-          :closeModal="toggleMoreInfo"
+          :closeModal="toggleDeleting"
         >
           <div style="display: flex; justify-content:center">
-            {{ itemName }}
+            {{ $store.state.products.deleting}}
           </div>
         </WhiteModal>
-      </transition> -->
+      </transition>
       <transition name="fade">
         <AddToCart
           v-if="addingToCart"
@@ -27,12 +27,22 @@
         <div>
           {{ setCurrencyType(CODE, CURRENCY, COUNTRY, extraProps.price)}}
         </div>
+        <template v-if="!isAdmin">
         <button @click="toggleAddToCart()" class="button button--success">
           Add to Cart
         </button>
         <button @click="$router.push(route), $store.commit('products/setProduct', extraProps)" class="button button--success">
           More Info
         </button>
+      </template>
+      <template v-else>
+        <button @click="toggleModifying(extraProps)" class="button button--success">
+          Modify
+        </button>
+        <button @click="toggleDeleting(extraProps)" class="button button--success">
+          Delete
+        </button>
+      </template>
       </div>
       <div class="card-content">
         <div class="card-image">
@@ -52,6 +62,7 @@
 import WhiteModal from "@/components/Common/WhiteModal";
 import SetCurrencyType from "@/mixins/currencyMixin";
 import AddToCart from "@/components/Products/AddToCart";
+import authMixin from "@/mixins/authMixin"
 import { mapGetters } from "vuex";
 export default {
   name: "Card",
@@ -64,10 +75,19 @@ export default {
       moreInfo: false,
       addingToCart: false
     };
-  },
+  }, 
   methods: {
-    toggleMoreInfo() {
-      this.moreInfo = !this.moreInfo;
+    toggleModifying(val) {
+      if (this.$store.state.products.toggleModifying) {
+        this.$store.commit('products/setModifying', null)
+      }
+      this.$store.commit('products/setModifying', val)
+    },
+    toggleDeleting(val) {
+      if (this.$store.state.products.deleting) {
+        this.$store.commit('products/setDeleting', null)
+      }
+      this.$store.commit('products/setDeleting', val)
     },
     toggleAddToCart() {
       this.addingToCart = !this.addingToCart;
@@ -95,7 +115,7 @@ export default {
       default: ''
     }
   },
-  mixins: [SetCurrencyType],
+  mixins: [SetCurrencyType, authMixin],
   computed: mapGetters(["CODE", "COUNTRY", "CURRENCY"])
 };
 </script>

@@ -3,14 +3,16 @@ import { edgewood } from "../../apis/axios";
 const state = {
   all: null,
   original: null,
-  single: null
+  single: null,
+  modifying: null,
+  deleting: null
 };
 
 // getters
 const getters = {
     getProducts: state => {
         return state.all
-    }
+    },
 };
 
 // actions
@@ -21,10 +23,6 @@ const actions = {
       commit("setProducts", data);
     });
   },
-  getPaginatedProducts({ commit }, page = 1) {
-    alert("happened");
-    console.log("page", page);
-  }
 };
 
 // mutations
@@ -37,6 +35,12 @@ const mutations = {
   },
   setProduct(state, product) {
     state.single = product
+  },
+  setModifying(state, product) {
+    state.modifying = product
+  },
+  setDeleting(state, product) {
+    state.deleting = product
   }
 };
 

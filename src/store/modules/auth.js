@@ -2,14 +2,12 @@ import { edgewood } from "../../apis/axios";
 // initial state
 const state = {
   user: null,
-  resolved: false
+  resolved: false,
 };
 
 // getters
 const getters = {
-  getProducts: state => {
-    return state.all;
-  }
+  
 };
 
 // actions
@@ -30,11 +28,7 @@ const actions = {
         console.log(err)
     })
     ;
-  },
-//   getPaginatedProducts({ commit }, page = 1) {
-//     alert("happened");
-//     console.log("page", page);
-//   }
+  }
 };
 
 // mutations
