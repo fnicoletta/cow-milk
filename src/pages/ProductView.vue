@@ -78,7 +78,7 @@
           class="product-view__more-item"
           :key="prod.id"
           v-for="prod in $store.state.products.original.data
-            .filter(p => p.id !== product.id)
+            .filter(p => p.id !== product.id && p.category === product.category)
             .slice(0, 4)"
         >
           <span class="bold d-block">{{ prod.name }}</span>

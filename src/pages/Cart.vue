@@ -50,10 +50,11 @@
 					Total ${{ cartTotal }}
 				</div>
 				<div class="button__container">
-					<button class="btn-checkout button button--transparent">
+					<button :class="!$store.state.auth.user ? 'button--disabled' : 'button--transparent'" class="btn-checkout button">
 						Checkout
 					</button>
 				</div>
+				<h3 class="text-center" v-if="!$store.state.auth.user">You must be logged in to checkout.</h3>
 			</div>
 			<div class="text-center" v-else>
 				<h2>Cart is empty :(</h2>
@@ -126,6 +127,7 @@ export default {
 	margin: 1vh 0;
 	img {
 		max-height: 200px;
+		width: 200px;
 		border: 3px solid $red;
 	}
 }
