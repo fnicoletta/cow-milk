@@ -8,7 +8,8 @@ const state = {
   deleting: null,
   sizes: [],
   categories: [],
-  loading: false
+  loading: false,
+  res: ""
 };
 
 // getters
@@ -26,26 +27,32 @@ const actions = {
       commit("setProducts", data);
     });
   },
-  productHandler({commit}, {product, action}) {
-    commit("setLoading", true)
+  async productHandler({ commit }, { product, action }) {
+    commit("setRes", "");
+    commit("setLoading", true);
+    const findProduct = state.all.data.find(prod => prod.id === product.id);
     const fd = new FormData();
-    fd.append('id', product.id)
-    fd.append('name', product.name)
-    fd.append('description', product.description)
-    fd.append('price', product.price)
-    fd.append('category', product.category)
-    fd.append('size', product.size)
-    fd.append('photo', product.image)
-    if (action === 'modify') {
-      edgewood.post("/products/update", fd)
-      .then(({data}) => {
-        console.log(data)
-        commit('setLoading', false)
-      })
-      .catch(err => {
-        console.log(err)
-        commit('setLoading', false)
-      })
+    fd.append("id", product.id);
+    fd.append("name", product.name);
+    fd.append("description", product.description);
+    fd.append("price", product.price);
+    fd.append("category", product.category);
+    fd.append("size", product.size);
+    fd.append("photo", product.image);
+    if (action === "modify") {
+      await edgewood
+        .post("/products/update", fd)
+        .then(({ data }) => {
+          commit("setProduct", findProduct);
+          commit("updateProduct", product)
+          commit("setLoading", false);
+          commit("setRes", "success");
+        })
+        .catch(err => {
+          console.log(err);
+          commit("setLoading", false);
+          commit("setRes", "fail");
+        });
     }
   }
 };
@@ -74,7 +81,22 @@ const mutations = {
     state.deleting = product;
   },
   setLoading(state, bool) {
-    state.loading = bool
+    state.loading = bool;
+  },
+  setRes(state, val) {
+    state.res = val;
+  },
+  updateProduct(state, { name, description, price, image, category, size }) {
+    console.log(state.single)
+    console.log(name, description, price, image, category)
+    state.single.name = name;
+    state.single.description = description;
+    state.single.price = price;
+    state.single.size = size
+    state.single.category = category;
+    if (image) {
+      state.single.image = image.src;
+    }
   }
 };
 

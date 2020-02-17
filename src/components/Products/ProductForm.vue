@@ -131,7 +131,7 @@ export default {
       if (this.product) {
         this.name = this.product.name;
         this.description = this.product.description;
-        this.price = this.product.price.toFixed(2);
+        this.price = this.product.price;
         this.image = this.product.image;
         this.category = this.product.category;
         this.val = this.product.sizes;
@@ -150,12 +150,24 @@ export default {
     initializeSize(val) {
       return this.$store.getters["sizes/findInitial"](val);
     },
-    modifyProduct() {
-      console.log(this.currentProduct);
-      this.$store.dispatch("products/productHandler", {
+    async modifyProduct() {
+      const tempName = this.product.name;
+      await this.$store.dispatch("products/productHandler", {
         product: this.currentProduct,
         action: "modify"
       });
+      if (this.$store.state.products.res === "success") {
+        this.$swal({
+          title: `${tempName} has been updated!`,
+          icon: "success"
+        });
+      } else {
+        this.$swal({
+          title: `Something went wrong...`,
+          icon: "warning"
+        });
+      }
+      this.toggle()
     }
   },
   computed: {
