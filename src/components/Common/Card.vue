@@ -1,18 +1,8 @@
 <template>
   <!-- pass :premade="false" if you wanna use your own custom card content-->
   <div class="card">
+     
     <template v-if="premade">
-      <transition name="fade">
-        <WhiteModal
-          v-if="$store.state.products.deleting"
-          :includeTitle="false"
-          :closeModal="toggleDeleting"
-        >
-          <div style="display: flex; justify-content:center">
-            {{ $store.state.products.deleting}}
-          </div>
-        </WhiteModal>
-      </transition>
       <transition name="fade">
         <AddToCart
           v-if="addingToCart"
@@ -36,7 +26,7 @@
         </button>
       </template>
       <template v-else>
-        <button @click="toggleModifying(extraProps)" class="button button--success">
+        <button @click="toggleFormProduct(extraProps)" class="button button--success">
           Modify
         </button>
         <button @click="toggleDeleting(extraProps)" class="button button--success">
@@ -58,8 +48,8 @@
 </template>
 
 <script>
-// import ProductModal from '@/components/Products/ProductModal'
-import WhiteModal from "@/components/Common/WhiteModal";
+import ProductForm from '@/components/Products/ProductForm'
+import DeleteProduct from '@/components/Products/DeleteProduct'
 import SetCurrencyType from "@/mixins/currencyMixin";
 import AddToCart from "@/components/Products/AddToCart";
 import authMixin from "@/mixins/authMixin"
@@ -67,8 +57,9 @@ import { mapGetters } from "vuex";
 export default {
   name: "Card",
   components: {
-    WhiteModal,
-    AddToCart
+    AddToCart,
+    ProductForm,
+    DeleteProduct
   },
   data() {
     return {
@@ -77,16 +68,10 @@ export default {
     };
   }, 
   methods: {
-    toggleModifying(val) {
-      if (this.$store.state.products.toggleModifying) {
-        this.$store.commit('products/setModifying', null)
-      }
-      this.$store.commit('products/setModifying', val)
+    toggleFormProduct(val) {
+      this.$store.commit('products/setFormProduct', val)
     },
     toggleDeleting(val) {
-      if (this.$store.state.products.deleting) {
-        this.$store.commit('products/setDeleting', null)
-      }
       this.$store.commit('products/setDeleting', val)
     },
     toggleAddToCart() {

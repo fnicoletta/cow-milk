@@ -1,5 +1,12 @@
 <template>
   <Layout>
+     <transition name="fade">
+        <ProductForm v-if="$store.state.products.formProduct" />
+      </transition>
+       <transition name="fade">
+        <DeleteProduct v-if="$store.state.products.deleting" />
+      </transition>
+     
     <div class="products main-wrapper">
       <h1 class="text-center title-color">Products</h1>
       <template v-if="products && !loading">
@@ -35,10 +42,15 @@
 <script>
 import ProductsList from "../components/Products/ProductsList";
 import Loading from "../components/Misc/Loading";
+import ProductForm from '@/components/Products/ProductForm'
+import DeleteProduct from '@/components/Products/DeleteProduct'
+
 export default {
   components: {
     ProductsList,
-    Loading
+    Loading,
+    ProductForm,
+    DeleteProduct
   },
   data() {
     return {

@@ -4,15 +4,17 @@ const state = {
   all: null,
   original: null,
   single: null,
-  modifying: null,
-  deleting: null
+  formProduct: null,
+  deleting: null,
+  sizes: [],
+  categories: []
 };
 
 // getters
 const getters = {
-    getProducts: state => {
-        return state.all
-    },
+  getProducts: state => {
+    return state.all;
+  }
 };
 
 // actions
@@ -22,25 +24,31 @@ const actions = {
       console.log("data", data);
       commit("setProducts", data);
     });
-  },
+  }
 };
 
 // mutations
 const mutations = {
   setProducts(state, products) {
     state.all = products;
-    if(!state.original) {
-      state.original = products
+    if (!state.original) {
+      state.original = products;
     }
   },
   setProduct(state, product) {
-    state.single = product
+    state.single = product;
   },
-  setModifying(state, product) {
-    state.modifying = product
+  setFormProduct(state, product) {
+    if (state.formProduct) {
+      state.formProduct = null;
+    }
+    state.formProduct = product;
   },
   setDeleting(state, product) {
-    state.deleting = product
+    if (state.deleting) {
+      state.deleting = null;
+    }
+    state.deleting = product;
   }
 };
 

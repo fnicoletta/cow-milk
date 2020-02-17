@@ -12,12 +12,31 @@
   transition-duration: 0.15s;
   transition-timing-function: ease;
 }
-
+textarea {
+  resize: none;
+}
 .default-input {
   -webkit-appearance: none;
 }
 
 .default-input--squared {
   border-radius: 0px;
+}
+
+.default-file-upload {
+  input[type="file"] {
+    display: none;
+  }
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 9px 12px;
+  cursor: pointer;
+  background-color: $black;
+  color: white;
+  border-radius: 3px;
+  transition: all $default-timing;
+  &:hover {
+    background-color: lighten($black, 12%);
+  }
 }
 
