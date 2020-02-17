@@ -110,6 +110,7 @@ export default {
     toggle() {
       if (this.product) {
         this.$store.commit("products/setFormProduct", null);
+        document.body.classList.remove("modal-open");
       }
     },
     getURL(e) {
@@ -167,7 +168,7 @@ export default {
           icon: "warning"
         });
       }
-      this.toggle()
+      this.toggle();
     }
   },
   computed: {
@@ -204,7 +205,8 @@ export default {
         price: this.price,
         category: this.category,
         size: typeof this.val === "string" ? this.val : this.val.id,
-        image: this.url ? this.url.imageObj : ""
+        image: this.url && this.url.imageObj,
+        src: this.url && this.url.src
       };
     }
   },

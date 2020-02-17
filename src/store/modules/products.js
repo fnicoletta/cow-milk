@@ -23,7 +23,6 @@ const getters = {
 const actions = {
   async getAllProducts({ commit }) {
     await edgewood.get("/products").then(({ data }) => {
-      console.log("data", data);
       commit("setProducts", data);
     });
   },
@@ -44,7 +43,7 @@ const actions = {
         .post("/products/update", fd)
         .then(({ data }) => {
           commit("setProduct", findProduct);
-          commit("updateProduct", product)
+          commit("updateProduct", product);
           commit("setLoading", false);
           commit("setRes", "success");
         })
@@ -54,6 +53,19 @@ const actions = {
           commit("setRes", "fail");
         });
     }
+  },
+  delete({ commit }, { id }) {
+    commit("setRes", "");
+
+    edgewood
+      .post("/products/delete", { id })
+      .then(({ data }) => {
+        commit("setRes", "success");
+        commit("setLoading", false);
+      })
+      .catch(err => {
+        commit("setRes", "fail");
+      });
   }
 };
 
@@ -86,16 +98,14 @@ const mutations = {
   setRes(state, val) {
     state.res = val;
   },
-  updateProduct(state, { name, description, price, image, category, size }) {
-    console.log(state.single)
-    console.log(name, description, price, image, category)
+  updateProduct(state, { name, description, price, src, category, size }) {
     state.single.name = name;
     state.single.description = description;
     state.single.price = price;
-    state.single.size = size
+    state.single.size = size;
     state.single.category = category;
-    if (image) {
-      state.single.image = image.src;
+    if (src) {
+      state.single.image = src;
     }
   }
 };
