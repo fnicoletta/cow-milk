@@ -23,6 +23,12 @@
 .d-i-block {
     display: inline-block;
 }
+.d-f {
+    @include flexbox();
+}
+.d-f-c-h {
+    @include flex-row('center-h');
+}
 .w-100 {
     width: 100%;
 }

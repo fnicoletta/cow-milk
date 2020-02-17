@@ -7,7 +7,8 @@ const state = {
   formProduct: null,
   deleting: null,
   sizes: [],
-  categories: []
+  categories: [],
+  loading: false
 };
 
 // getters
@@ -24,6 +25,28 @@ const actions = {
       console.log("data", data);
       commit("setProducts", data);
     });
+  },
+  productHandler({commit}, {product, action}) {
+    commit("setLoading", true)
+    const fd = new FormData();
+    fd.append('id', product.id)
+    fd.append('name', product.name)
+    fd.append('description', product.description)
+    fd.append('price', product.price)
+    fd.append('category', product.category)
+    fd.append('size', product.size)
+    fd.append('photo', product.image)
+    if (action === 'modify') {
+      edgewood.post("/products/update", fd)
+      .then(({data}) => {
+        console.log(data)
+        commit('setLoading', false)
+      })
+      .catch(err => {
+        console.log(err)
+        commit('setLoading', false)
+      })
+    }
   }
 };
 
@@ -49,6 +72,9 @@ const mutations = {
       state.deleting = null;
     }
     state.deleting = product;
+  },
+  setLoading(state, bool) {
+    state.loading = bool
   }
 };
 

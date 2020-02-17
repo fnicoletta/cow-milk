@@ -13,55 +13,69 @@
         </template>
         <template v-else>
           <div class="product-form__img">
-            <img :src="url" alt="preview before upload" />
+            <img :src="url.src" alt="preview before upload" />
           </div>
           <button @click="url = ''" class="button">
             Cancel and Retain Old Image
           </button>
         </template>
       </div>
-      <form>
+      <form @submit.prevent="modifyProduct">
         <label for="name">Name</label>
         <input v-model="name" type="text" class="default-input" />
         <label for="description">Description</label>
-        <textarea cols="20" v-model="description" type="text" class="default-input" />
+        <textarea
+          cols="20"
+          v-model="description"
+          type="text"
+          class="default-input"
+        />
         <label for="price">Price</label>
         <input v-model="price" type="text" class="default-input" />
-        <label for="category">
-          Category
-        </label>
-        <select
-          v-model="category"
-          name="category"
-          id="category"
-          class="default-select"
-        >
-          <option
-            :value="each.id"
-            v-for="each in $store.state.categories.all"
-            :key="each.id"
+        <template v-if="$store.state.categories.all && $store.state.sizes.all">
+          <label for="category">
+            Category
+          </label>
+          <select
+            v-model="category"
+            name="category"
+            id="category"
+            class="default-select"
           >
-            {{ each.catname }}
-          </option>
-        </select>
-        <label for="size">Size</label>
-        <select
-          @change="updateSize"
-          name="size"
-          id="size"
-          class="default-select"
-        >
-          <option v-if="val && val === size" :value="val.id">
-            {{ val.size }} test
-          </option>
-          <option :key="each.id" v-for="each in sizes" :value="each.id">
-            {{ sizeDisplay(each.size) }}
-          </option>
-        </select>
-        <div class="product-form__submit">
+            <option
+              :value="each.id"
+              v-for="each in $store.state.categories.all"
+              :key="each.id"
+            >
+              {{ each.catname }}
+            </option>
+          </select>
+          <label for="size">Size</label>
+          <select
+            v-if="val"
+            @change="updateSize"
+            name="size"
+            id="size"
+            class="default-select"
+          >
+            <option selected v-if="val === initialSize" :value="val.id">
+              {{ sizeDisplay(val.size) }}
+            </option>
+            <option :key="each.id" v-for="each in sizes" :value="each.id">
+              {{ sizeDisplay(each.size) }}
+            </option>
+          </select>
+        </template>
+        <div v-else class="d-f-c-h w-100">
+          <Spinner color="black" />
+        </div>
+        <div v-if="!$store.state.products.loading" class="product-form__submit">
           <button class="button button--success">
             Update {{ product.name }}
           </button>
+        </div>
+        <div v-else class="d-f-c-h w-100">
+          <Spinner color="black" />
         </div>
       </form>
     </div>
@@ -79,7 +93,8 @@ export default {
       price: 0,
       image: "",
       category: null,
-      url: ""
+      url: "",
+      initialSize: null
     };
   },
   components: {
@@ -99,15 +114,12 @@ export default {
     },
     getURL(e) {
       const file = e.target.files[0];
-      this.url = URL.createObjectURL(file);
+      this.url = { src: URL.createObjectURL(file), imageObj: file };
     },
     async getSizes() {
       if (!this.$store.state.sizes.all) {
         await this.$store.dispatch("sizes/getSizes");
-        if (this.product) {
-          this.val = this.product.size;
-          this.val = this.$store.getters["sizes/findInitial"](this.val);
-        }
+        this.val = this.$store.getters["sizes/findInitial"](this.val);
       }
     },
     getCategories() {
@@ -122,6 +134,11 @@ export default {
         this.price = this.product.price.toFixed(2);
         this.image = this.product.image;
         this.category = this.product.category;
+        this.val = this.product.sizes;
+        if (this.$store.state.sizes.all) {
+          this.val = this.$store.getters["sizes/findInitial"](this.val);
+          this.initialSize = this.val;
+        }
       }
     },
     sizeDisplay(size) {
@@ -132,6 +149,13 @@ export default {
     },
     initializeSize(val) {
       return this.$store.getters["sizes/findInitial"](val);
+    },
+    modifyProduct() {
+      console.log(this.currentProduct);
+      this.$store.dispatch("products/productHandler", {
+        product: this.currentProduct,
+        action: "modify"
+      });
     }
   },
   computed: {
@@ -157,8 +181,19 @@ export default {
     },
     sizes() {
       if (this.$store.state.sizes.all) {
-        return this.$store.getters["sizes/listing"](this.val);
+        return this.$store.getters["sizes/listing"](this.product.sizes);
       }
+    },
+    currentProduct() {
+      return {
+        id: this.product.id,
+        name: this.name,
+        description: this.description,
+        price: this.price,
+        category: this.category,
+        size: typeof this.val === "string" ? this.val : this.val.id,
+        image: this.url ? this.url.imageObj : ""
+      };
     }
   },
   mounted() {
@@ -173,10 +208,7 @@ export default {
 .product-form {
   pointer-events: auto;
   .default-select {
-    margin-left: 25px;
-  }
-  .product-form__select {
-    margin-left: 25px;
+    margin-left: 5%;
   }
 }
 .product-form__img {

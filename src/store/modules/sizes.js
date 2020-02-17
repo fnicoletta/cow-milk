@@ -6,10 +6,10 @@ const state = {
 
 const getters = {
   listing: (state) => (size) => {
-    return state.all.filter(each => each.size !== size)
+    return state.all.filter(each => each.id !== size)
   },
   findInitial: (state) => (size) => {
-    return state.all.find(each => each.size === size)
+    return state.all.find(each => each.id === size)
   }
 }
 
