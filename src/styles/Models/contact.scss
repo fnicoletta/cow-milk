@@ -61,3 +61,51 @@
       transform: scale(1.2);
    }
 }
+
+@include small(down) {
+   .contact__form {
+      margin: auto;
+
+      &-input {
+         width: 65vw;
+
+
+         &-container {
+            display: flex;
+            flex-direction: column;
+         }
+      }
+
+      &-comments {
+         width: 70vw;
+      }
+   }
+
+   .contact__header {
+      display: none;
+   }
+}
+
+@include medium(down) {
+   .contact__form {
+      margin: auto;
+
+      &-input {
+         width: 65vw;
+
+
+         &-container {
+            display: flex;
+            flex-direction: column;
+         }
+      }
+
+      &-comments {
+         width: 70vw;
+      }
+   }
+
+   .contact__header {
+      display: none;
+   }
+}

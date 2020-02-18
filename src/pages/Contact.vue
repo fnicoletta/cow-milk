@@ -15,11 +15,13 @@
 							class="contact__form-input"
 							type="text"
 							placeholder="What does your mom call you?"
+							required
 						/>
 						<input
 							class="contact__form-input"
 							type="email"
 							placeholder="Where should we contact you?"
+							required
 						/>
 					</div>
 					<textarea
@@ -27,6 +29,7 @@
 						cols="65"
 						rows="10"
 						placeholder="How can we help you?"
+						required
 					></textarea>
 					<button
 						class="contact__button"

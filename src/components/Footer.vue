@@ -1,8 +1,6 @@
 <template>
 	<div class="container__footer">
-		<router-link to="/contact">
-			<h2 class="footer-title text-center">Contact Us</h2>
-		</router-link>
+		<h2 class="footer-title text-center">Contact Us</h2>
 		<div class="icon-container">
 			<a
 				style="color: antiquewhite"
