@@ -45,7 +45,10 @@ export default {
         this.events = data.results.filter(e => e.type === "event");
         console.log(data);
       });
-  }
+  },
+	created () {
+		document.title = "Events"
+	}
 };
 </script>
 

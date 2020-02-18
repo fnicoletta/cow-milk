@@ -68,7 +68,10 @@ export default {
   },
   components: {
     Modal
-  }
+  },
+	created () {
+		document.title = "Home"
+	}
 };
 </script>
 

@@ -6,7 +6,9 @@
 
 <script>
 export default {
-
+	created () {
+		document.title = "Not Found"
+	}
 }
 </script>
 

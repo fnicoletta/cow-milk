@@ -104,6 +104,9 @@ export default {
 			})
 			return total.toFixed(2)
 		}
+	},
+	created () {
+		document.title = "Cart"
 	}
 }
 </script>
@@ -127,8 +130,12 @@ export default {
 	margin: 1vh 0;
 	img {
 		max-height: 200px;
-		width: 200px;
+		min-width: 200px;
+		max-width: 200px;
 		border: 3px solid $red;
+		@include small("down") {
+			min-width: 98%;
+		}
 	}
 }
 

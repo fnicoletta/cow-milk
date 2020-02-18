@@ -99,7 +99,10 @@ export default {
   },
   mounted() {
     this.getProducts();
-  }
+  },
+	created () {
+		document.title = "Products"
+	}
 };
 </script>
 

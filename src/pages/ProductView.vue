@@ -113,6 +113,7 @@ export default {
   mounted() {
     if (this.product) {
       this.setCookie("prod", JSON.stringify(this.product), 999);
+      document.title = `View - ${this.product.name}`
     }
   },
   data() {
