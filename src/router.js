@@ -6,12 +6,12 @@ import Products from "./pages/Products";
 import ProductView from "./pages/ProductView";
 import NotFound from './pages/NotFound.vue';
 import Cart from './pages/Cart.vue'
+import Contact from '@/pages/Contact.vue'
 import {
   cookieFunctions
 } from '@/mixins/cookiesMixin';
 Vue.use(VueRouter);
-const routes = [
-  {
+const routes = [{
     path: "/",
     component: Home
   },
@@ -32,12 +32,17 @@ const routes = [
     path: "/cart",
     component: Cart
   },
+  {
+    path: '/contact',
+    component: Contact
+  },
   // { path: "/login", component: Login, meta : { guest: true } },
   // { path: "/register", component: Register, meta : { guest: true } },
   {
     path: "/*",
     component: NotFound
-  }
+  },
+
 ];
 
 // 3. Create the router instance and pass the `routes` option

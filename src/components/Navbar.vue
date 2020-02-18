@@ -1,10 +1,18 @@
 <template>
 	<div class="navbar">
 		<ZoomCenterTransition :duration="200">
-		<Login :register="toggleRegister" v-if="loggingIn" :closeModal="toggleLogin" />
+			<Login
+				:register="toggleRegister"
+				v-if="loggingIn"
+				:closeModal="toggleLogin"
+			/>
 		</ZoomCenterTransition>
 		<ZoomCenterTransition :duration="200">
-		<Register :login="toggleLogin" v-if="registering" :closeModal="toggleRegister" />
+			<Register
+				:login="toggleLogin"
+				v-if="registering"
+				:closeModal="toggleRegister"
+			/>
 		</ZoomCenterTransition>
 		<div
 			class="navbar__container"
@@ -30,11 +38,14 @@
 					<router-link to="/events">
 						<li>Events</li>
 					</router-link>
+					<router-link to="/contact">
+						<li>Contact</li>
+					</router-link>
 					<router-link to="/cart"><li>Cart</li></router-link>
 				</div>
 				<div v-if="$store.state.auth.resolved" class="navbar__ctas">
 					<SlideDownTransition>
-					<NavbarPanel :close="toggleOptions" v-if="options" />
+						<NavbarPanel :close="toggleOptions" v-if="options" />
 					</SlideDownTransition>
 					<a
 						v-if="$store.state.auth.user"
@@ -109,6 +120,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
