@@ -66,8 +66,10 @@
    .contact__form {
       margin: auto;
 
+
       &-input {
          width: 65vw;
+         font-size: 13px;
 
 
          &-container {
@@ -78,6 +80,7 @@
 
       &-comments {
          width: 70vw;
+         font-size: 13px;
       }
    }
 

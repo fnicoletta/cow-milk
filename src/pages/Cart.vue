@@ -1,9 +1,10 @@
 <template>
 	<Layout>
 		<transition name="fade">
-		<div v-if="removing" class="notification notification-success">
-			<span class="cart__removed-text">{{ removing }} Removed</span> <span class="notification-icon"><i class="fas fa-check"></i></span>
-		</div>
+			<div v-if="removing" class="notification notification-success">
+				<span class="cart__removed-text">{{ removing }} Removed</span>
+				<span class="notification-icon"><i class="fas fa-check"></i></span>
+			</div>
 		</transition>
 		<div class="cart-container">
 			<h1 class="text-center title-color">My Cart</h1>
@@ -35,10 +36,14 @@
 							</select>
 							<br />
 						</h4>
-						<h4>Total: ${{ (products.price * products.quantity).toFixed(2) }}</h4>
+						<h4>
+							Total: ${{
+								(products.price * products.quantity).toFixed(2)
+							}}
+						</h4>
 					</div>
 					<div class="button__container">
-						<button @click="saveItem" class="btn-link">
+						<button @click="saveItem(products)" class="btn-link">
 							Save for later
 						</button>
 						<button @click="removeItem(products)" class="btn-link">
@@ -46,15 +51,22 @@
 						</button>
 					</div>
 				</div>
-				<div class="cart__total text-center">
-					Total ${{ cartTotal }}
-				</div>
+				<div class="cart__total text-center">Total ${{ cartTotal }}</div>
 				<div class="button__container">
-					<button :class="!$store.state.auth.user ? 'button--disabled' : 'button--transparent'" class="btn-checkout button">
+					<button
+						:class="
+							!$store.state.auth.user
+								? 'button--disabled'
+								: 'button--transparent'
+						"
+						class="btn-checkout button"
+					>
 						Checkout
 					</button>
 				</div>
-				<h3 class="text-center" v-if="!$store.state.auth.user">You must be logged in to checkout.</h3>
+				<h3 class="text-center" v-if="!$store.state.auth.user">
+					You must be logged in to checkout.
+				</h3>
 			</div>
 			<div class="text-center" v-else>
 				<h2>Cart is empty :(</h2>
@@ -63,6 +75,18 @@
 						Add to Cart
 					</button></router-link
 				>
+			</div>
+			<div class="saved-items__container">
+				<h3>Saved for later:</h3>
+				<div v-if="savedItems.length">
+					<div v-for="(items, i) in savedItems" :key="i">
+						<div>Item: {{ items[0].name }}</div>
+						<div>Quantity: {{ items[0].quantity }}</div>
+					</div>
+				</div>
+				<div v-else>
+					<h5>No saved items...</h5>
+				</div>
 			</div>
 		</div>
 	</Layout>
@@ -73,7 +97,7 @@ import chz1 from "../static/cheese_1.jpg"
 export default {
 	data() {
 		return {
-			removing: ''
+			removing: ""
 		}
 	},
 	methods: {
@@ -81,13 +105,13 @@ export default {
 			this.removing = products.name
 			this.$store.dispatch("cart/removeItem", products.cartID)
 			this.$store.dispatch("cart/saveCart")
-			const self = this;
-            setTimeout(() => {
-                self.removing = '';
-            }, 2000);
+			const self = this
+			setTimeout(() => {
+				self.removing = ""
+			}, 2000)
 		},
-		saveItem() {
-			alert("saved")
+		saveItem(item) {
+			this.$store.dispatch("cart/saveItem", item.cartID)
 		},
 		saveQuantity() {
 			this.$store.dispatch("cart/saveCart")
@@ -97,15 +121,18 @@ export default {
 		shoppingCart() {
 			return this.$store.state.cart.cart
 		},
+		savedItems() {
+			return this.$store.state.cart.saved
+		},
 		cartTotal() {
 			let total = 0
-			this.shoppingCart.forEach((cartItem) => {
+			this.shoppingCart.forEach(cartItem => {
 				total += cartItem.price * cartItem.quantity
 			})
 			return total.toFixed(2)
 		}
 	},
-	created () {
+	created() {
 		document.title = "Cart"
 	}
 }
@@ -163,6 +190,10 @@ export default {
 
 .btn-checkout {
 	margin: 10px auto;
+}
+
+.saved-items__container {
+	border: 2px solid $red;
 }
 
 @include small(down) {

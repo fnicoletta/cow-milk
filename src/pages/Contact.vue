@@ -5,7 +5,7 @@
 				<h1>Contact Us</h1>
 				<h3>
 					Questions? Comments? Just want to say hi? Fill out our contact
-					form and we'll have our people talk to your people
+					form and we'll have our people talk to your people.
 				</h3>
 			</div>
 			<form action="">

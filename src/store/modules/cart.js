@@ -4,7 +4,8 @@ import {
 
 // initial state
 const state = {
-  cart: []
+  cart: [],
+  saved: []
 };
 
 // getters
@@ -40,6 +41,9 @@ const actions = {
   saveCart() {
     cookieFunctions.setCookie('cart', JSON.stringify(state.cart), 99999)
   },
+  storeSavedItems() {
+    cookieFunctions.setCookie('saved', JSON.stringify(state.saved), 99999)
+  },
 
   removeItem({
     commit
@@ -47,6 +51,17 @@ const actions = {
     let temp = state.cart.filter(items => items.cartID !== cartId)
     console.log(temp, cartId)
     commit('setCart', temp)
+  },
+
+  saveItem({
+    commit,
+    dispatch
+  }, cartId) {
+    let temp = state.cart.filter(items => items.cartID == cartId)
+    commit('setSaved', temp)
+    dispatch('storeSavedItems')
+    dispatch('removeItem', cartId)
+    dispatch('saveCart')
   }
 };
 
@@ -54,6 +69,9 @@ const actions = {
 const mutations = {
   setCart(state, cart) {
     state.cart = cart;
+  },
+  setSaved(state, savedItem) {
+    state.saved = [...state.saved, savedItem]
   }
 };
 
