@@ -21,6 +21,7 @@
           class="home__featured-products-item"
         >
           <router-link
+          @click="$store.commit('products/setProduct', product)"
             :to="{
               path: `/products/${product.name.split(' ').join('-')}`,
               props: { product }
