@@ -1,41 +1,42 @@
-import Vue from 'vue'
-import Vuex from 'vue'
-
+import { cookieFunctions } from "@/mixins/cookiesMixin"
 
 const state = {
-   countryCode: 'us',
-   currencyType: 'USD',
-   country: 'USA'
+	currencyCode: {
+		countryCode: "us",
+		currencyType: "USD",
+		country: "USA"
+	}
 }
 
 const getters = {
-   CURRENCY: state => state.currencyType,
-   CODE: state => state.countryCode,
-   COUNTRY: state => state.country
+	CURRENCY: state => state.currencyCode.currencyType,
+	CODE: state => state.currencyCode.countryCode,
+	COUNTRY: state => state.currencyCode.country
 }
 
 const mutations = {
-   setCurrency(state, {
-      countryCode,
-      country,
-      currencyType
-   }) {
-      state.countryCode = countryCode
-      state.country = country
-      state.currencyType = currencyType
-   }
+	setCurrency(state, { countryCode, country, currencyType }) {
+		state.currencyCode.countryCode = countryCode
+		state.currencyCode.country = country
+		state.currencyCode.currencyType = currencyType
+
+		cookieFunctions.setCookie(
+			"currencyCode",
+			JSON.stringify(state.currencyCode),
+			99999
+		)
+	}
 }
 
 const actions = {
-   setCurrency(commit, value) {
-      commit('setCurrency', value)
-   }
+	setCurrency(commit, value) {
+		commit("setCurrency", value)
+	}
 }
 
-
 export default {
-   state,
-   getters,
-   actions,
-   mutations
+	state,
+	getters,
+	actions,
+	mutations
 }

@@ -11,9 +11,10 @@ import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 
 import cookieMixin from "@/mixins/cookiesMixin"
+import setCurrencyType from "@/mixins/currencyMixin.js"
 export default {
 	name: "app",
-	mixins: [cookieMixin],
+	mixins: [cookieMixin, setCurrencyType],
 	components: {
 		Navbar,
 		Footer

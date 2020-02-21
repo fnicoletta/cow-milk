@@ -37,8 +37,9 @@
 							<br />
 						</h4>
 						<h4>
-							Total: ${{
-								(products.price * products.quantity).toFixed(2)
+							Total:
+							{{
+								setCurrencyType(CODE, CURRENCY, COUNTRY, products.price)
 							}}
 						</h4>
 					</div>
@@ -51,7 +52,9 @@
 						</button>
 					</div>
 				</div>
-				<div class="cart__total text-center">Total ${{ cartTotal }}</div>
+				<div class="cart__total text-center">
+					Total {{ setCurrencyType(CODE, CURRENCY, COUNTRY, cartTotal) }}
+				</div>
 				<div class="button__container">
 					<button
 						:class="
@@ -76,29 +79,23 @@
 					</button></router-link
 				>
 			</div>
-			<div class="saved-items__container">
-				<h3>Saved for later:</h3>
-				<div v-if="savedItems.length">
-					<div v-for="(items, i) in savedItems" :key="i">
-						<div>Item: {{ items[0].name }}</div>
-						<div>Quantity: {{ items[0].quantity }}</div>
-					</div>
-				</div>
-				<div v-else>
-					<h5>No saved items...</h5>
-				</div>
-			</div>
+			<SaveForLater />
 		</div>
 	</Layout>
 </template>
 
 <script>
-import chz1 from "../static/cheese_1.jpg"
+import SaveForLater from "@/components/SaveForLater.vue"
+import setCurrencyType from "@/mixins/currencyMixin.js"
+import { mapGetters } from "vuex"
 export default {
 	data() {
 		return {
 			removing: ""
 		}
+	},
+	components: {
+		SaveForLater
 	},
 	methods: {
 		removeItem(products) {
@@ -112,18 +109,19 @@ export default {
 		},
 		saveItem(item) {
 			this.$store.dispatch("cart/saveItem", item.cartID)
+			this.$store.dispatch("cart/storeSavedItems")
 		},
+
 		saveQuantity() {
 			this.$store.dispatch("cart/saveCart")
 		}
 	},
 	computed: {
+		...mapGetters(["CODE", "COUNTRY", "CURRENCY"]),
 		shoppingCart() {
 			return this.$store.state.cart.cart
 		},
-		savedItems() {
-			return this.$store.state.cart.saved
-		},
+
 		cartTotal() {
 			let total = 0
 			this.shoppingCart.forEach(cartItem => {
@@ -134,74 +132,7 @@ export default {
 	},
 	created() {
 		document.title = "Cart"
-	}
+	},
+	mixins: [setCurrencyType]
 }
 </script>
-
-//
-<style lang="scss">
-.cart-container {
-	max-width: 80%;
-	margin: auto;
-}
-
-.cart {
-	display: flex;
-	flex-direction: column;
-}
-
-.cart__items {
-	display: flex;
-	background: $cream;
-	border: 1px $red solid;
-	margin: 1vh 0;
-	img {
-		max-height: 200px;
-		min-width: 200px;
-		max-width: 200px;
-		border: 3px solid $red;
-		@include small("down") {
-			min-width: 98%;
-		}
-	}
-}
-
-.button__container {
-	display: flex;
-	flex-direction: column-reverse;
-	align-items: flex-end;
-	width: 100%;
-	.btn-link {
-		justify-content: flex-end;
-		margin: 10px;
-	}
-}
-
-.cart__items-info {
-	margin: auto 15px;
-	h4 {
-		white-space: nowrap;
-	}
-}
-
-.btn-shopping {
-	margin-bottom: 20px;
-}
-
-.btn-checkout {
-	margin: 10px auto;
-}
-
-.saved-items__container {
-	border: 2px solid $red;
-}
-
-@include small(down) {
-	.cart__items {
-		margin: 0 auto;
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-	}
-}
-</style>
